@@ -31,7 +31,6 @@ const server = http.createServer((req,res)=>{
           });
         })
     }
-
     res.setHeader('Content-Type', 'text/html');
     res.write('<html')
     res.write('<body><h1>Hello Miles </h1></body>')
