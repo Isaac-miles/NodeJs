@@ -20,14 +20,16 @@ const server = http.createServer((req,res)=>{
     }
     if(url == '/message' && method ==='POST'){
         const body = [];
-        res.on('data',(chunk)=>{
-            log(chunk)
-            body.push();
+        req.on('data',(chunk)=>{
+            log("chunk",chunk)
+            body.push(chunk);
+
         })
-        req.on('end',function(){
+        req.on('end',()=>{
             const parsedBody = Buffer.concat(body).toString();
+            log(parsedBody);
         })
-        fs.writeFileSync('message.txt',);
+        fs.writeFileSync('message.txt','miles');
         res.statusCode = 302;
         res.setHeader('Location','/')
         return res.end()
