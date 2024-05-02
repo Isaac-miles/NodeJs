@@ -33,4 +33,9 @@ const reqHandler = (req, res)=>{
     res.end()
 }
 
-module.exports = reqHandler;
+// exports = reqHandler;
+
+module.exports ={
+    requestHandler:reqHandler,
+    others :"add others "
+}
