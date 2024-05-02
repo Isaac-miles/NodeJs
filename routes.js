@@ -33,9 +33,22 @@ const reqHandler = (req, res)=>{
     res.end()
 }
 
+const taskHandler = (req,res)=>{
+    const url = req.url;
+    if(url === '/'){
+        res.write('<body><h3>welcome dear user</h3></body>')
+       return res.end()
+    }
+    if(url==='/users'){
+        res.write('<body><ul><li>Management</li><li>Miles</li><li>Jon</li><li>Doe</li></ul></body>')
+        return res.end()
+    }
+}
+
+
 // exports = reqHandler;
 
 module.exports ={
-    requestHandler:reqHandler,
-    others :"add others "
+    reqHandler,
+    taskHandler
 }
