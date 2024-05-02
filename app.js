@@ -5,7 +5,8 @@ const PORT = 5050;
 
 const server = http.createServer((req,res)=>{
     res.end("hello ending the event")
-    process.exit()
+    res.setHeader('Content-Type', 'text/html');
+    // process.exit()
 })
 
 server.listen(PORT,()=>{
