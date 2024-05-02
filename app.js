@@ -21,7 +21,11 @@ const server = http.createServer((req,res)=>{
     if(url == '/message' && method ==='POST'){
         const body = [];
         res.on('data',(chunk)=>{
+            log(chunk)
             body.push();
+        })
+        req.on('end',function(){
+            const parsedBody = Buffer.concat(body).toString();
         })
         fs.writeFileSync('message.txt',);
         res.statusCode = 302;
