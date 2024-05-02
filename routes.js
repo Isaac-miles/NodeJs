@@ -3,7 +3,7 @@ const fs = require('fs');
 const reqHandler = (req, res)=>{
     const url = req.url;
     const method = req.method;
-    
+
     if(url === '/'){
         res.write('<html')
         res.write('<header><title>Form Submit</title></header>')
@@ -32,3 +32,5 @@ const reqHandler = (req, res)=>{
     res.write('</html')
     res.end()
 }
+
+module.exports = reqHandler;
