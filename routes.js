@@ -49,6 +49,9 @@ const taskHandler = (req,res)=>{
     }
     if(url=== 'create-users'){
         
+        req.on('data',()=>{
+            
+        })
     }
 }
 // exports = reqHandler;
