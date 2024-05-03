@@ -1,3 +1,4 @@
+const { log } = require('console');
 const fs = require('fs');
 
 const reqHandler = (req, res)=>{
@@ -48,10 +49,16 @@ const taskHandler = (req,res)=>{
         return res.end()
     }
     if(url=== 'create-users'){
-        
-        req.on('data',()=>{
-            
+        const username = [];
+        req.on('data',(chunk)=>{
+            username.push(chunk)
+            log(chunk)
         })
+        return req.on('end',()=>{
+            const parsedUser = Buffer.concat(body).split("=")[1];
+            log(parsedUser)
+        })
+
     }
 }
 // exports = reqHandler;
