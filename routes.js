@@ -49,15 +49,17 @@ const taskHandler = (req,res)=>{
         res.write('</body><html>')
         return res.end()
     }
-    if(url=== '/create-users'){
+    if(url=== '/create-user'){
         const username = [];
         req.on('data',(chunk)=>{
             username.push(chunk)
             log(chunk)
         })
         return req.on('end',()=>{
-            const parsedUser = Buffer.concat(body).split("=")[1];
-            log(parsedUser)
+            const parsedUser = Buffer.concat(username).toString();
+                log(parsedUser.split('=')[1])
+            res.statusCode = 302;
+            res.setHeader('Location','/')
             res.end()
         })
     }
