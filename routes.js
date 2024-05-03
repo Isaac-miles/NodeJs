@@ -37,7 +37,7 @@ const taskHandler = (req,res)=>{
     const url = req.url;
     if(url === '/'){
         res.write('<body><h3>welcome dear user</h3>')
-        res.write('<form action="/create-user" method="POST"><input type="text" name="create-user"/><button type="submit">send</button></form>')
+        res.write('<form action="/create-user" method="POST"><input type="text" name="create-user"/><button type="submit">create</button></form>')
         res.write('</body>')
        return res.end()
     }
