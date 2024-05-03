@@ -36,13 +36,14 @@ const reqHandler = (req, res)=>{
 const taskHandler = (req,res)=>{
     const url = req.url;
     if(url === '/'){
-        res.write('<body><h3>welcome dear user</h3></body>')
+        res.write('<body><h3>welcome dear user</h3>')
+        res.write('<form action="/create-user" method="POST"><input type="text" name="create-user"/><button type="submit">send</button></form>')
+        res.write('</body>')
        return res.end()
     }
     if(url==='/users'){
         res.write('<html><body>')
         res.write('<ul><li>Management</li><li>Miles</li><li>Jon</li><li>Doe</li></ul>')
-        res.write('<form action="/message" method="POST"><input type="text" name="message"/><button type="submit">send</button></form>')
         res.write('</body><html>')
         return res.end()
     }
