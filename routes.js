@@ -36,19 +36,20 @@ const reqHandler = (req, res)=>{
 
 const taskHandler = (req,res)=>{
     const url = req.url;
+    const method = req.method;
     if(url === '/'){
         res.write('<body><h3>welcome dear user</h3>')
         res.write('<form action="/create-user" method="POST"><input type="text" name="create-user"/><button type="submit">create</button></form>')
         res.write('</body>')
        return res.end()
     }
-    if(url==='/users'){
+    if(url==='/users' && method==='POST'){
         res.write('<html><body>')
         res.write('<ul><li>Management</li><li>Miles</li><li>Jon</li><li>Doe</li></ul>')
         res.write('</body><html>')
         return res.end()
     }
-    if(url=== 'create-users'){
+    if(url=== '/create-users'){
         const username = [];
         req.on('data',(chunk)=>{
             username.push(chunk)
