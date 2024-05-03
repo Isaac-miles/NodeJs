@@ -40,7 +40,10 @@ const taskHandler = (req,res)=>{
        return res.end()
     }
     if(url==='/users'){
+        res.write('html')
         res.write('<body><ul><li>Management</li><li>Miles</li><li>Jon</li><li>Doe</li></ul></body>')
+        res.write('<body><form action="/message" method="POST"><input type="text" name="message"/><button type="submit">send</button></form></body>')
+
         return res.end()
     }
 }
