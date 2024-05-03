@@ -57,9 +57,10 @@ const taskHandler = (req,res)=>{
         return req.on('end',()=>{
             const parsedUser = Buffer.concat(body).split("=")[1];
             log(parsedUser)
+            res.end()
         })
-
     }
+    res.end()
 }
 // exports = reqHandler;
 
