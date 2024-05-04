@@ -1,0 +1,19 @@
+{
+  "name": "nodejs",
+  "version": "1.0.0",
+  "description": "project folder for my node Js course",
+  "main": "app.js",
+  "scripts": {
+    "test": "start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Isaac-miles/NodeJs.git"
+  },
+  "author": "Isaac",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Isaac-miles/NodeJs/issues"
+  },
+  "homepage": "https://github.com/Isaac-miles/NodeJs#readme"
+}
