@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "start",
-    "start":"node app.js"
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/Isaac-miles/NodeJs/issues"
   },
-  "homepage": "https://github.com/Isaac-miles/NodeJs#readme"
+  "homepage": "https://github.com/Isaac-miles/NodeJs#readme",
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
 }
