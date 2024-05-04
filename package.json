@@ -4,7 +4,8 @@
   "description": "project folder for my node Js course",
   "main": "app.js",
   "scripts": {
-    "test": "start"
+    "test": "start",
+    "start":"node app.js"
   },
   "repository": {
     "type": "git",
