@@ -59,8 +59,8 @@ const taskHandler = (req,res)=>{
             const parsedUser = Buffer.concat(username).toString();
                 log(parsedUser.split('=')[1])
             res.statusCode = 302;
-            res.setHeader('Location','/')
-            res.end()
+            res.setHeader('Location','/');
+            res.end();
         })
     }
     res.end()
