@@ -3,7 +3,7 @@ const http = require('http');
 const routes = require('./routes');
 
 const {log} = console;
-const PORT = 5050;
+const PORT = 4000;
 
 const server = http.createServer(routes.requestHandler)
 
