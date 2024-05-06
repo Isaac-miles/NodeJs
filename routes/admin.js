@@ -1,5 +1,6 @@
 const Router = require('express').Router();
 
+const {log} = console;
 
 Router.get('/add-product', (req,res,next)=>{
     res.send('<body><form action="/product" method="POST"><input type="text" name="product"/><button type="submit">send</button></form></body>');
