@@ -10,7 +10,7 @@ let PORT = 4000;
 const app = express();
 
 app.use(bodyParser.urlencoded({extended:true}));
-
+app.use(express.static(path.join(__dirname,'public')));
 //you can add a filter to this base url
 app.use('/admin',adminRoutes);
 
