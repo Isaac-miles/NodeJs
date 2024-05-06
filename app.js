@@ -1,3 +1,4 @@
+const path = require('path');
 
 const bodyParser = require('body-parser');
 const express = require('express');
@@ -16,6 +17,6 @@ app.use('/admin',adminRoutes);
 app.use(shopRoutes)
 
 app.use((req,res,next)=>{
-    res.status(404).json({'message':`${req.url} does not exists`});
+    res.status(404).sendFile(path.join(__dirname,'views','_404.html'));
 })
 app.listen(PORT,()=>`server running on port ${PORT}`);
