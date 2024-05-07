@@ -12,7 +12,7 @@ html(lang="en")
             nav.main-header__nav 
                 ul.main-header__item-list 
                     li.main-header__item 
-                        a(href="http:/") shop
+                        a(href="http:/",class=(path==='/' ? 'active' : '')) shop
                     li.main-header__item 
-                        a(href="http:/admin/add-product") add product
+                        a(href="http:/admin/add-product",class=(path==='/admin/add-product' ? 'active' : '')) add product
         block content
