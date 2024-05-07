@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static(path.join(__dirname,'public')));
 
 //you can add a filter to this base url
-app.use('/admin',adminRoutes);
+app.use('/admin',adminRoutes.routes);
 
 app.use(shopRoutes)
 
