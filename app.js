@@ -28,10 +28,10 @@ app.use(express.static(path.join(__dirname,'public')));
 //you can add a filter to this base url
 app.use('/admin',adminRoutes.routes);
 
-app.use(shopRoutes)
+app.use(shopRoutes);
 
 app.use((req,res,next)=>{
-    res.render('404',{pageTitle:"Error"})
+    res.render('404',{pageTitle:"Error"});
     // res.status(404).sendFile(path.join(__dirname,'views','_404.html'));
 })
 app.listen(PORT,()=>`server running on port ${PORT}`);
