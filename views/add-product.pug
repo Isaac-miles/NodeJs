@@ -3,7 +3,7 @@ html(lang="en")
     head
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        title add product
+        title #{pageTitle}
         link(rel="stylesheet", href="/css/main.css")
         link(rel="stylesheet", href="/css/forms.css")
         link(rel="stylesheet", href="/css/product.css")
@@ -14,10 +14,10 @@ html(lang="en")
                     li.main-header__item 
                         a(href="http:/") shop
                     li.main-header__item 
-                        a(href="http:/admin/add-product") add product
+                        a.active(href="http:/admin/add-product") add product
     main 
         form.product-form(action="/admin/add-product", method="post") 
             .form-control 
                 label(for="title") title 
-                input(type="text", name="title" id="title")
+                input(type="text", name="title")#title
                 button.btn(type="submit") add product
