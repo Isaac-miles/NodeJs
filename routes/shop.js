@@ -6,7 +6,7 @@ const adminData = require('./admin');
 
 
 Router.get('/',(req,res,next)=>{
-    res.render('shopify',{pageTitle:'shopify',prods:adminData.products,docTitle:'shop',path:'/'});
+    res.render('shopify',{pageTitle:'shopify',prods:adminData.products,docTitle:'shop',path:'/',hasProducts:adminData.products.length>0});
     // console.log("from shop", adminData.products)
     // res.sendFile(path.join(rootDir,'views','shop.html'));
 })

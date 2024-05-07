@@ -12,7 +12,7 @@ const app = express();
 
 app.engine('handlebars',engine());
 app.set('view engine', 'handlebars'); 
-app.set('views','./views')
+app.set('views','./views/handlebars')
 // app.set('view engine', 'pug'); //set the configuration for the template engine
 // app.set('views','views') //telling express where to find dynamic templates for pug
 
