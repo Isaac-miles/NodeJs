@@ -5,6 +5,7 @@ html(lang="en")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         title #{pageTitle}
         link(rel="stylesheet", href="/css/main.css")
+        block styles
 
     body 
         header.main-header 
@@ -14,4 +15,4 @@ html(lang="en")
                         a(href="http:/") shop
                     li.main-header__item 
                         a(href="http:/admin/add-product") add product
-        h1 PAGE NOT FOUND
+        block content
