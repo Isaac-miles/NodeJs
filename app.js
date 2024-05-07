@@ -2,13 +2,17 @@ const path = require('path');
 
 const bodyParser = require('body-parser');
 const express = require('express');
+const expressHbs = ('express-handlebars');
 
 const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
 
 let PORT = 4000;
 const app = express();
-app.set('view engine', 'pug'); //set the configuration for the template engine
+app.engine('hbs',expressHbs());
+app.set('view engine', 'hbs'); 
+
+// app.set('view engine', 'pug'); //set the configuration for the template engine
 app.set('views','views') //telling express where to find dynamic templates for pug
 
 app.use(bodyParser.urlencoded({extended:true}));
