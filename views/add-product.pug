@@ -13,3 +13,11 @@ html(lang="en")
                 ul.main-header__nav 
                     li.main-header__item 
                         a(href="http:/") shop
+                    li.main-header__item 
+                        a(href="http:/admin/add-product") add product
+    main 
+        form.product-form(action="/admin/add-product", method="post") 
+            .form-control 
+                label(for="title") title 
+                input(type="text", name="title" id="title")
+                button.btn(type="submit") 
