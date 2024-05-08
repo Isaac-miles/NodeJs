@@ -1,14 +1,10 @@
 const path = require('path');
 const Router = require('express').Router();
 
-const rootDir = require('../utils/path');
-const adminData = require('./admin');
+const productController =require('../controllers/products')
 
 
-Router.get('/',(req,res,next)=>{
-    res.render('shopify',{pageTitle:'shopify',prods:adminData.products,docTitle:'shop',path:'/',hasProducts:adminData.products.length>0,activeShop:true});
-    // console.log("from shop", adminData.products)
-    // res.sendFile(path.join(rootDir,'views','shop.html'));
-})
+
+Router.get('/',productController.getProducts);
 
 module.exports = Router; 
