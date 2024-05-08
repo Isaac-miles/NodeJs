@@ -1,7 +1,5 @@
 const ProductsModel = require('../models/product');
 
-
-
 exports.getProducts = (req,res,next)=>{
      ProductsModel.fetchAll((products)=>{
         res.render('shop/product-list',
@@ -34,7 +32,7 @@ exports.getCart = (req,res,next)=>{
         pageTitle:'your cart',
         // prods:products,
         docTitle:'shop',
-        path:'/',
+        path:'/cart',
         // hasProducts:products.length>0,
     });
 }
