@@ -16,15 +16,16 @@ exports.postAddProduct = (req,res,next)=>{
 }
 
 exports.getProducts = (req,res,next)=>{
-    const products = ProductsModel.fetchAll();
-    res.render('shopify',
-    {
-        pageTitle:'shopify',
-        prods:products,
-        docTitle:'shop',
-        path:'/',
-        hasProducts:products.length>0,
-        activeShop:true
-    });
+     ProductsModel.fetchAll((products)=>{
+        res.render('shopify',
+        {
+            pageTitle:'shopify',
+            prods:products,
+            docTitle:'shop',
+            path:'/',
+            hasProducts:products.length>0,
+            activeShop:true
+        });
+     });
 }
 
