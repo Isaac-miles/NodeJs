@@ -30,19 +30,23 @@ exports.getCart = (req,res,next)=>{
     res.render('shop/cart',
     {
         pageTitle:'your cart',
-        // prods:products,
         docTitle:'shop',
         path:'/cart',
-        // hasProducts:products.length>0,
+    });
+}
+exports.getOrders = (req,res,next)=>{
+    res.render('shop/orders',
+    {
+        pageTitle:'your orders',
+        docTitle:'shop',
+        path:'/orders',
     });
 }
 exports.getCheckout = (req,res,next)=>{
     res.render('shop/checkout',
     {
         pageTitle:'checkout',
-        // prods:products,
         docTitle:'shop',
         path:'/checkout',
-        // hasProducts:products.length>0,
     });
 }
