@@ -1,11 +1,5 @@
 const ProductsModel = require('../models/product');
 
-exports.postAddProduct = (req,res,next)=>{
-    const product = new ProductsModel(req.body.title);
-    product.save();
-    res.redirect('/');
-}
-
 exports.getAddProduct = (req,res,next)=>{
     res.render('admin/add-product',
     {
@@ -14,6 +8,14 @@ exports.getAddProduct = (req,res,next)=>{
         addProduct:true
     });
 }
+
+exports.postAddProduct = (req,res,next)=>{
+    const {title,imageUrl,description,price} = req.body;
+    const product = new ProductsModel(title,imageUrl,description,price);
+    product.save();
+    res.redirect('/');
+}
+
 exports.getProducts = (req,res,next)=>{
     ProductsModel.fetchAll((products)=>{
         res.render('admin/products',
