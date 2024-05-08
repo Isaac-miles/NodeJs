@@ -10,13 +10,17 @@ module.exports = class Product{
     }
 
     save(){
-        fs.readFile(path.join(rootDir,'data','product.json'),(error,data)=>{
+        let pth =path.join(rootDir,'data','product.json');
+        fs.readFile(pth,(error,data)=>{
             let products = [];
+            console.log(error);
             if(!error){
                 products = JSON.parse(data);
             }
             products.push(this);
-            fs.writeFile()
+            fs.writeFile(pth,JSON.stringify(products),(err)=>{
+                console.log(error)
+            });
         });
     }
 
