@@ -1,5 +1,11 @@
 const ProductsModel = require('../models/product');
 
+exports.postAddProduct = (req,res,next)=>{
+    const product = new ProductsModel(req.body.title);
+    product.save();
+    res.redirect('/');
+}
+
 exports.getAddProduct = (req,res,next)=>{
     res.render('admin/add-product',
     {
@@ -8,24 +14,16 @@ exports.getAddProduct = (req,res,next)=>{
         addProduct:true
     });
 }
-
-exports.postAddProduct = (req,res,next)=>{
-    const product = new ProductsModel(req.body.title);
-    product.save();
-    res.redirect('/');
-}
-
 exports.getProducts = (req,res,next)=>{
-     ProductsModel.fetchAll((products)=>{
-        res.render('shop/product-list',
+    ProductsModel.fetchAll((products)=>{
+        res.render('admin/products',
         {
-            pageTitle:'shopify',
+            pageTitle:'Admin products',
             prods:products,
             docTitle:'shop',
-            path:'/',
+            path:'/admin/products',
             hasProducts:products.length>0,
             activeShop:true
         });
      });
 }
-

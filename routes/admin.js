@@ -1,9 +1,9 @@
 const path = require('path');
 const Router = require('express').Router();
-const productController =require('../controllers/products')
+const adminController =require('../controllers/admin');
 
-Router.get('/add-product',productController.getAddProduct);
+Router.get('/add-product',adminController.getAddProduct);
 
-Router.get('/products',productController);
+Router.get('/products',adminController.getProducts);
 
 module.exports = Router;
