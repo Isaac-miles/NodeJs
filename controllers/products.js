@@ -19,7 +19,10 @@ exports.getProducts = (req,res,next)=>{
     {
         pageTitle:'shopify',
         prods:products,
-        docTitle:'shop',path:'/',
-        hasProducts:products.length>0,activeShop:true
+        docTitle:'shop',
+        path:'/',
+        hasProducts:products.length>0,
+        activeShop:true
     });
 }
+
