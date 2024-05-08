@@ -20,7 +20,7 @@ module.exports = class Product{
     save(){
         getProductFromFile(product=>{
             product.push(this);
-            fs.writeFile(pth,JSON.stringify(products),(err)=>{
+            fs.writeFile(pth,JSON.stringify(product),(err)=>{
             });
         })}
 
