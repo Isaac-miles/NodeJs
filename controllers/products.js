@@ -10,11 +10,13 @@ exports.getAddProduct = (req,res,next)=>{
 }
 
 exports.postAddProduct = (req,res,next)=>{
-    products.push(new ProductsModel(req.body.title));
+    const product = new ProductsModel(req.body.title);
+    product.save();
     res.redirect('/');
 }
 
 exports.getProducts = (req,res,next)=>{
+    const products = ProductsModel.fetchAll();
     res.render('shopify',
     {
         pageTitle:'shopify',

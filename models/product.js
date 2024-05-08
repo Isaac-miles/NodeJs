@@ -5,11 +5,11 @@ module.exports = class Product{
         this.title = title;
     }
 
-    #save(){
+    save(){
         products.push(this);
     }
 
     static fetchAll(){
-        return this.products;
+        return products;
     }
 }
