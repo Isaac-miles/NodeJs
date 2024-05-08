@@ -3,5 +3,9 @@ exports.getAddProduct = (req,res,next)=>{
     {pageTitle:"add-product",
      path:'/admin/add-product',
      addProduct:true});
-    // res.sendFile(path.join(rootDir,'views','add-product.html'));
+}
+
+exports.postAddProduct = (req,res,next)=>{
+    products.push({title:req.body.title});
+    res.redirect('/');
 }
