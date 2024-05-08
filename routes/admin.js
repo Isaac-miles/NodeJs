@@ -5,10 +5,7 @@ const {log} = console;
 const rootDir = require('../utils/path');
 
 const products =[];
-router.get('/add-product', (req,res,next)=>{
-    res.render('add-product',{pageTitle:"add-product", path:'/admin/add-product',addProduct:true});
-    // res.sendFile(path.join(rootDir,'views','add-product.html'));
-})
+router.get('/add-product',require('../controllers/products').getAddProduct)
 
 router.post('/add-product',(req,res,next)=>{
     products.push({title:req.body.title});
