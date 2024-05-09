@@ -47,6 +47,6 @@ exports.getCheckout = (req,res,next)=>{
     {
         pageTitle:'checkout',
         docTitle:'shop',
-        // path:'/checkout',
+        path:'/checkout',
     });
 }
