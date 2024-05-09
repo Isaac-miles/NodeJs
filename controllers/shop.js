@@ -37,7 +37,7 @@ exports.getCart = (req,res,next)=>{
 exports.getOrders = (req,res,next)=>{
     res.render('shop/orders',
     {
-        // pageTitle:'your orders',
+        pageTitle:'your orders',
         docTitle:'shop',
         path:'/orders',
     });
