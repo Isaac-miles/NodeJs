@@ -50,7 +50,8 @@ exports.getCart = (req,res,next)=>{
     });
 }
 exports.addToCart = (req,res,next)=>{
-    const productId = req.body.ProductId;
+    const productId = req.body.productId;
+    res.redirect('/cart');
 }
 exports.getOrders = (req,res,next)=>{
     res.render('shop/orders',
