@@ -6,7 +6,8 @@ exports.getAddProduct = (req,res,next)=>{
     {
         pageTitle:"add product",
         path:'/admin/add-product',
-        addProduct:true
+        addProduct:true,
+        editing:"false",
     });
 }
 
@@ -29,7 +30,7 @@ exports.getEditProduct = (req,res,next)=>{
             editing:editMode,
             product
         });
-    })
+    });
    
 }
 
