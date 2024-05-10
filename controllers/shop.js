@@ -1,3 +1,4 @@
+const Product = require('../models/product');
 const ProductsModel = require('../models/product');
 
 exports.getProducts = (req,res,next)=>{
@@ -16,9 +17,12 @@ exports.getProducts = (req,res,next)=>{
 
 exports.getProductDetails = (req,res,next)=>{
     const requestParam = req.params.productId;
-    console.log(requestParam);
+    ProductsModel.findById(requestParam,product=>{
+        console.log(product);
+
+    });
     res.redirect('/');
-    
+
     // ProductsModel.fetchAll((products)=>{
     //     res.render('shop/product-detail',
     //     {
