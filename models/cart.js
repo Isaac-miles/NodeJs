@@ -17,16 +17,20 @@ export default class Cart{
             }
 
         //Analyze the cart => find existing product
-        const existingProduct = cart.products.find(prod=>prod.id===id);
+        const existingProductIndex = cart.products.findIndex(prod=>prod.id===id);
+        const existingProduct = cart.products[existingProductIndex];
+        
             let updatedProduct;
             if(existingProduct){
                 updatedProduct={...existingProduct};
                 updatedProduct.qty = updatedProduct.qty + 1;
             }else{
                 updatedProduct = {id:id,qty:1};
+            cart.products = [...cart.products, updatedProduct]
+
             }
             cart.totalPrice = cart.totalPrice + productPrice;
-        })
+        });
       
 
         //Add new product increase quantity
