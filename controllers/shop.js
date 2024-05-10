@@ -18,20 +18,15 @@ exports.getProducts = (req,res,next)=>{
 exports.getProductDetails = (req,res,next)=>{
     const requestParam = req.params.productId;
     ProductsModel.findById(requestParam,product=>{
-
+        res.render('shop/product-detail',
+            {
+                pageTitle:'Product-detail page',
+                product:product,
+                docTitle:'Product detail',
+                path:'/products',
+            })
     });
-    res.redirect('/');
-
-    // ProductsModel.fetchAll((products)=>{
-    //     res.render('shop/product-detail',
-    //     {
-    //         pageTitle:'Product-detail page',
-    //         prods:products,
-    //         docTitle:'Product detail',
-    //         path:'/product-detail',
-    //         hasProducts:products.length>0,
-    //     })
-    // });
+    // res.redirect('/');
 }
 
 exports.getIndex = (req,res,next)=>{
