@@ -18,6 +18,7 @@ exports.getProductDetails = (req,res,next)=>{
     const requestParam = req.params.productId;
     console.log(requestParam);
     res.redirect('/');
+    
     // ProductsModel.fetchAll((products)=>{
     //     res.render('shop/product-detail',
     //     {
