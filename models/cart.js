@@ -1,12 +1,12 @@
-import fs from 'fs';
-import path from 'path';
-import RootDIRE from '../utils/path';
+const fs = require('fs');
+const path = require('path');
+const RootDIRE = require('../utils/path');
 
 const p = path.join(
    RootDIRE,'data','cart.json'
 );
 
-export default class Cart{
+module.exports = class Cart{
 
     static addProduct(id,productPrice){
         //fetch the previous cart
@@ -28,10 +28,10 @@ export default class Cart{
                 cart.products[existingProductIndex] = updatedProduct;
             }else{
                 updatedProduct = {id:id,qty:1};
-            cart.products = [...cart.products, updatedProduct]
+                cart.products = [...cart.products, updatedProduct]
 
             }
-            cart.totalPrice = cart.totalPrice + productPrice;
+            cart.totalPrice = cart.totalPrice + +productPrice;
             fs.writeFile(p,JSON.stringify(cart),err=>console.log(err));
         });
       

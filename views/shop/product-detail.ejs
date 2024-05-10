@@ -11,7 +11,7 @@
             </div>
             <h3>N<%=product.price%> </h3>
             <p>N<%=product.description%> </p>
-            <%- include('../includes/add-to-cart.ejs') %>
+            <%- include('../includes/add-to-cart.ejs',{product}) %>
 
         </main>
         <%- include('../includes/end.ejs') %>
