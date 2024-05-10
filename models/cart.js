@@ -15,8 +15,16 @@ export default class Cart{
             if(!err){
                 cart = JSON.parse(data);
             }
-        })
+
         //Analyze the cart => find existing product
+        const existingProduct = cart.products.find(prod=>prod.id===id);
+            let updatedProduct;
+            if(existingProduct){
+                updatedProduct={...existingProduct};
+                updatedProduct.qty = updatedProduct.qty + 1;
+            }
+        })
+      
 
         //Add new product increase quantity
     }
