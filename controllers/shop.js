@@ -4,7 +4,7 @@ exports.getProducts = (req,res,next)=>{
      ProductsModel.fetchAll((products)=>{
         res.render('shop/product-list',
         {
-            pageTitle:'shopify',
+            pageTitle:'All products',
             prods:products,
             docTitle:'shop',
             path:'/products',
@@ -12,6 +12,22 @@ exports.getProducts = (req,res,next)=>{
             activeShop:true
         });
      });
+}
+
+exports.getProductDetails = (req,res,next)=>{
+    const requestParam = req.params.productId;
+    console.log(requestParam);
+    res.redirect('/');
+    // ProductsModel.fetchAll((products)=>{
+    //     res.render('shop/product-detail',
+    //     {
+    //         pageTitle:'Product-detail page',
+    //         prods:products,
+    //         docTitle:'Product detail',
+    //         path:'/product-detail',
+    //         hasProducts:products.length>0,
+    //     })
+    // });
 }
 
 exports.getIndex = (req,res,next)=>{

@@ -21,6 +21,7 @@ module.exports = class Product{
     }
 
     save(){
+        this.id = Math.round().toString();
         getProductFromFile(product=>{
             product.push(this);
             fs.writeFile(pth,JSON.stringify(product),(err)=>{
