@@ -17,11 +17,12 @@ exports.postAddProduct = (req,res,next)=>{
 }
 
 exports.getEditProduct = (req,res,next)=>{
+    const editMode = req.query.edit;
     res.render('admin/edit-product',
     {
         pageTitle:"edit product",
         path:'/admin/edit-product',
-        addProduct:true
+        editing:true
     });
 }
 
