@@ -4,6 +4,12 @@
     <body>
         <%- include('../includes/navigation.ejs') %>
         <main class="centered">
-            <h1>Nothing there!</h1>
+            <h2><%=product.title %></h2>
+            <hr>
+            <div>
+                <img src="<%=product.imageUrl %>" alt="<%=product.title %>" >
+            </div>
+            <h3>N<%=product.price%> </h3>
+            <p>N<%=product.description%> </p>
         </main>
         <%- include('../includes/end.ejs') %>
