@@ -49,6 +49,9 @@ exports.getCart = (req,res,next)=>{
         path:'/cart',
     });
 }
+exports.addToCart = (req,res,next)=>{
+    const productId = req.body.ProductId;
+}
 exports.getOrders = (req,res,next)=>{
     res.render('shop/orders',
     {
