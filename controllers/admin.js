@@ -48,3 +48,8 @@ exports.getProducts = (req,res,next)=>{
         });
      });
 }
+
+
+exports.updateProduct = (req,res,next)=>{
+    
+}
