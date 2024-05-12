@@ -43,8 +43,13 @@ module.exports = class Product{
                 if(existingProduct){
                     const updatedProduct = product.filter(prod=>prod.id !== existingProduct.id);
                     fs.writeFile(pth,JSON.stringify(updatedProduct),err=>console.log(err));
+                }else{
+                    return "no product found";
                 }
             })
+        }
+        static deleteProduct(id){
+            this.delete(id);
         }
 
     static fetchAll(cb){

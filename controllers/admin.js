@@ -61,6 +61,8 @@ exports.deleteProduct =(req,res,next)=>{
     if(!productId){
         res.status(404).send(JSON.stringify({message:"invalid product Id"}));
     }
+    Product.deleteProduct(productId);
+    
     Product.findById(productId, product=>{
        if(!product){
         res.status(404).send(JSON.stringify({message:"product with Id not found"}));
