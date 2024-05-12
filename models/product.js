@@ -37,21 +37,19 @@ module.exports = class Product{
           
         })}
 
-        delete(id){
+       static deleteProduct(id,cb){
             getProductFromFile(product=>{
                 const existingProduct = product.find(prod=>prod.id=== id);
                 if(existingProduct){
                     const updatedProduct = product.filter(prod=>prod.id !== existingProduct.id);
                     fs.writeFile(pth,JSON.stringify(updatedProduct),err=>console.log(err));
+                    cb(existingProduct);
                 }else{
-                    return "no product found";
+                   cb(null);
                 }
             })
         }
-        static deleteProduct(id){
-            this.delete(id);
-        }
-
+      
     static fetchAll(cb){
         getProductFromFile(cb);
     }
