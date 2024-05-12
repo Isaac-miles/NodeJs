@@ -22,8 +22,11 @@ module.exports = class Product{
     }
 
     save(){
-        this.id = Math.random().toString();
         getProductFromFile(product=>{
+            if(this.id){
+                const existingProductIndex = products.findIndex(prod=>prod.id===this.id);
+            }
+            this.id = Math.random().toString();
             product.push(this);
             fs.writeFile(pth,JSON.stringify(product),(err)=>{
             });
