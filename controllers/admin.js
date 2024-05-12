@@ -49,11 +49,17 @@ exports.getProducts = (req,res,next)=>{
      });
 }
 
-
 exports.updateProduct = (req,res,next)=>{
     const {productId,title,price,description,imageUrl} = req.body;
     const updatedProduct = new Product(productId,title,imageUrl,description,price);
     updatedProduct.save();
     res.redirect('/admin/products');
+
+}
+exports.deleteProduct =(req,res,next)=>{
+    const productId = req.params.productId;
+    const existingProduct = Product.findById(productId, product=>{
+        
+    })
 
 }
