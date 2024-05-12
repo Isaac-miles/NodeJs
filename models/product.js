@@ -37,6 +37,16 @@ module.exports = class Product{
           
         })}
 
+        delete(id){
+            getProductFromFile(product=>{
+                const existingProduct = product.find(prod=>prod.id=== id);
+                if(existingProduct){
+                    const updatedProduct = product.filter(prod=>prod.id !== existingProduct.id);
+                    fs.writeFile(pth,JSON.stringify(updatedProduct),err=>console.log(err));
+                }
+            })
+        }
+
     static fetchAll(cb){
         getProductFromFile(cb);
     }
@@ -45,6 +55,5 @@ module.exports = class Product{
             const product = products.find(p=>p.id==id);
             cb(product);
         });
-
     }
 }
