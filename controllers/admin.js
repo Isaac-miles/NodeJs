@@ -58,8 +58,14 @@ exports.updateProduct = (req,res,next)=>{
 }
 exports.deleteProduct =(req,res,next)=>{
     const productId = req.params.productId;
-    const existingProduct = Product.findById(productId, product=>{
+    if(!productId){
+        res.status(404).send(JSON.stringify({message:"invalid product Id"}));
+    }
+    Product.findById(productId, product=>{
+       if(!product){
+        res.status(404).send(JSON.stringify({message:"product with Id not found"}));
         
+       }
     })
 
 }
