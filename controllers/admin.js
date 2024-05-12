@@ -51,5 +51,5 @@ exports.getProducts = (req,res,next)=>{
 
 
 exports.updateProduct = (req,res,next)=>{
-    
+    const productId = req.body.productId;
 }
