@@ -25,6 +25,9 @@ module.exports = class Product{
         getProductFromFile(product=>{
             if(this.id){
                 const existingProductIndex = products.findIndex(prod=>prod.id===this.id);
+                const updatedProducts = [...products];
+                updatedProducts[existingProductIndex] = this;
+                fs.writeFile(pth,JSON.stringify(updatedProducts),err=>console.log(err));
             }
             this.id = Math.random().toString();
             product.push(this);
