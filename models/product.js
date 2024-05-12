@@ -28,11 +28,13 @@ module.exports = class Product{
                 const updatedProducts = [...products];
                 updatedProducts[existingProductIndex] = this;
                 fs.writeFile(pth,JSON.stringify(updatedProducts),err=>console.log(err));
+            }else{
+                this.id = Math.random().toString();
+                product.push(this);
+                fs.writeFile(pth,JSON.stringify(product),(err)=>{
+                });
             }
-            this.id = Math.random().toString();
-            product.push(this);
-            fs.writeFile(pth,JSON.stringify(product),(err)=>{
-            });
+          
         })}
 
     static fetchAll(cb){
