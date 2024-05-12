@@ -13,7 +13,7 @@ exports.getAddProduct = (req,res,next)=>{
 
 exports.postAddProduct = (req,res,next)=>{
     const {title,imageUrl,description,price} = req.body;
-    const product = new ProductsModel(title,imageUrl,description,price);
+    const product = new ProductsModel(null,title,imageUrl,description,price);
     product.save();
     res.redirect('/');
 }
