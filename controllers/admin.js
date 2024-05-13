@@ -57,7 +57,7 @@ exports.updateProduct = (req,res,next)=>{
 
 }
 exports.deleteProduct =(req,res,next)=>{
-    const productId = req.params.productId;
+    const productId = req.body.productId;
     if(!productId){
         res.status(404).send(JSON.stringify({message:"invalid product Id"}));
     }
