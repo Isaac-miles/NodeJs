@@ -44,6 +44,15 @@ exports.getIndex = (req,res,next)=>{
 }
 exports.getCart = (req,res,next)=>{
     Cart.getCart(cart=>{
+        Product.fetchAll(products =>{
+        const cartProducts =[];
+            for(product of products){
+                const condition = cart.products.find(prod=>prod.id=== product.id);
+                if(condition){
+                    cartProducts.push(product);
+                }
+            }
+        })
         res.render('shop/cart',
         {
             pageTitle:'your cart',
