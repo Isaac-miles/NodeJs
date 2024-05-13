@@ -38,4 +38,12 @@ module.exports = class Cart{
 
         //Add new product increase quantity
     }
+    static deleteProduct(id,productPrice){
+        fs.readFile(p,(err,data)=>{
+            if(err){
+                return
+            }
+        });
+
+    }
 }

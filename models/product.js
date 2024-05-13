@@ -42,7 +42,9 @@ module.exports = class Product{
                 const existingProduct = product.find(prod=>prod.id=== id);
                 if(existingProduct){
                     const updatedProduct = product.filter(prod=>prod.id !== existingProduct.id);
-                    fs.writeFile(pth,JSON.stringify(updatedProduct),err=>console.log(err));
+                    fs.writeFile(pth,JSON.stringify(updatedProduct),err=>{
+                        console.log(err)
+                    });
                     cb(existingProduct);
                 }else{
                    cb(null);
