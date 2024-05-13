@@ -43,12 +43,15 @@ exports.getIndex = (req,res,next)=>{
      });
 }
 exports.getCart = (req,res,next)=>{
-    res.render('shop/cart',
-    {
-        pageTitle:'your cart',
-        docTitle:'shop',
-        path:'/cart',
-    });
+    Cart.getCart(cart=>{
+        res.render('shop/cart',
+        {
+            pageTitle:'your cart',
+            docTitle:'shop',
+            path:'/cart',
+        });
+    })
+ 
 }
 exports.addToCart = (req,res,next)=>{
     const productId = req.body.productId;
