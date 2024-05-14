@@ -44,7 +44,7 @@ exports.getProducts = (req,res,next)=>{
             docTitle:'shop',
             path:'/admin/products',
             hasProducts:products.length>0,
-            activeShop:true
+            // activeShop:true
         });
      });
 }
