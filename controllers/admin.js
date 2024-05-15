@@ -53,7 +53,7 @@ exports.updateProduct = (req,res,next)=>{
     const {productId,title,price,description,imageUrl} = req.body;
     const updatedProduct = new Product(productId,title,imageUrl,description,price);
     updatedProduct.save();
-    // res.redirect('/admin/products');
+    res.redirect('/admin/products');
 
 }
 exports.deleteProduct =(req,res,next)=>{
