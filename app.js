@@ -7,7 +7,11 @@ const db = require('./utils/db');
 const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
 
-db.execute('SELECT * FROM ');
+db.execute('SELECT * FROM products')
+    .then(data=>{
+
+    })
+    .catch(err=>console.log(err));
 
 let PORT = 4000;
 const app = express();
