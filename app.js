@@ -3,15 +3,8 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const express = require('express');
 const errorHandlerController = require('./controllers/errorHandlers')
-const db = require('./utils/db');
 const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
-
-db.execute('SELECT * FROM products')
-    .then(result=>{
-        console.log(result);
-    })
-    .catch(err=>console.log(err));
 
 let PORT = 4000;
 const app = express();
