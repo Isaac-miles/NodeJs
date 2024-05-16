@@ -7,6 +7,8 @@ const db = require('./utils/db');
 const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
 
+db.execute('SELECT * FROM ');
+
 let PORT = 4000;
 const app = express();
 
