@@ -43,15 +43,17 @@ exports.getProducts = (req,res,next)=>{
 
 exports.getProductDetails = (req,res,next)=>{
     const requestParam = req.params.productId;
-    ProductsModel.findById(requestParam,product=>{
-        res.render('shop/product-detail',
+    ProductsModel.findById(requestParam)
+        .then(([result])=>{
+            res.render('shop/product-detail',
             {
                 pageTitle:'Product-detail page',
-                product:product,
+                product:result[0],
                 docTitle:'Product detail',
                 path:'/products',
             })
-    });
+        })
+        .catch(err=>console.log(err));
     // res.redirect('/');
 }
 
