@@ -32,7 +32,7 @@ exports.getProducts = (req,res,next)=>{
                 prods:rows,
                 docTitle:'shop',
                 path:'/products',
-                hasProducts:products.length>0,
+                hasProducts:rows.length>0,
                 activeShop:true
             });
         })
