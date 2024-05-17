@@ -25,20 +25,21 @@ exports.getIndex = (req,res,next)=>{
 }
 exports.getProducts = (req,res,next)=>{
      ProductsModel.fetchAll()
-        .then(([rows, fieldData])=>{
+        .then(([rows])=>{
             res.render('shop/product-list',
             {
                 pageTitle:'All products',
-                prods:products,
+                prods:rows,
                 docTitle:'shop',
                 path:'/products',
                 hasProducts:products.length>0,
                 activeShop:true
             });
         })
+        .catch(err=>console.log(err));
    
-     });
-}
+     }
+
 
 exports.getProductDetails = (req,res,next)=>{
     const requestParam = req.params.productId;
