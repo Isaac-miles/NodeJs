@@ -22,10 +22,28 @@ app.use(shopRoutes);
 
 app.use(errorHandlerController.get404);
 
-sequelize.sync()
- .then(result=>{
-    // console.log(result);
-app.listen(PORT,()=>`server running on port ${PORT}`);
+// sequelize.sync()
+//  .then(result=>{
+//     // console.log(result);
+// app.listen(PORT,()=>`server running on port ${PORT}`);
 
- }).catch(err=>console.log(err));
+
+
+//  }).catch(err=>console.log(err));
  
+ async function connectToDataBase(){
+    try {
+        
+        await sequelize.authenticate();
+        console.log('Connection has been established successfully.');
+        sequelize.sync()
+          .then(result=>{
+            // console.log(result);
+          }).catch(err=>console.log(err));
+
+      } catch (error) {
+        console.error('Unable to connect to the database:', error);
+      }
+  }
+
+  connectToDataBase();
