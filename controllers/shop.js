@@ -45,13 +45,18 @@ exports.getProductDetails = (req,res,next)=>{
     const requestParam = req.params.productId;
     ProductsModel.findById(requestParam)
         .then(([result])=>{
-            res.render('shop/product-detail',
-            {
-                pageTitle:'Product-detail page',
-                product:result[0],
-                docTitle:'Product detail',
-                path:'/products',
-            })
+            if(result){
+                res.render('shop/product-detail',
+                {
+                    pageTitle:'Product-detail page',
+                    product:result[0],
+                    docTitle:'Product detail',
+                    path:'/products',
+                })
+            }else{
+                
+            }
+         
         })
         .catch(err=>console.log(err));
     // res.redirect('/');
