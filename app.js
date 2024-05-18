@@ -33,7 +33,7 @@ app.use(errorHandlerController.get404);
  
  async function connectToDataBase(){
     try {
-        
+
         await sequelize.authenticate();
         console.log('Connection has been established successfully.');
         sequelize.sync()
@@ -46,4 +46,4 @@ app.use(errorHandlerController.get404);
       }
   }
 
-  connectToDataBase();
+  connectToDataBase()
