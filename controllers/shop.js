@@ -22,47 +22,31 @@ exports.getIndex = (req,res,next)=>{
 exports.getProducts = (req,res,next)=>{
     ProductsModel.findAll()
     .then(result=>{
-        res.render({
-
+        res.render('shop/product-list',{
+            pageTitle:'All products',
+            prods:result,
+            docTitle:'shop',
+            path:'/products',
+            hasProducts:result.length>0,
+            activeShop:true
         })
     })
-    .catch(err=>console.log(err))
-     ProductsModel.fetchAll()
-        .then(([rows])=>{
-            res.render('shop/product-list',
-            {
-                pageTitle:'All products',
-                prods:rows,
-                docTitle:'shop',
-                path:'/products',
-                hasProducts:rows.length>0,
-                activeShop:true
-            });
-        })
-        .catch(err=>console.log(err));
-   
+    .catch(err=>console.log(err));
      }
 
 
 exports.getProductDetails = (req,res,next)=>{
     const requestParam = req.params.productId;
-    ProductsModel.findById(requestParam)
-        .then(([result])=>{
-            if(result){
-                res.render('shop/product-detail',
-                {
-                    pageTitle:'Product-detail page',
-                    product:result[0],
-                    docTitle:'Product detail',
-                    path:'/products',
-                })
-            }else{
-                
-            }
-         
+    ProductsModel.findByPk(requestParam)
+        .then(product=>{
+            res.render('shop/product-detail',
+            {
+                pageTitle:'Product-detail page',
+                product:product.dataValues,
+                docTitle:'Product detail',
+                path:'/products',
+            })
         })
-        .catch(err=>console.log(err));
-    // res.redirect('/');
 }
 
 exports.getCart = (req,res,next)=>{
