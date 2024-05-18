@@ -46,4 +46,4 @@ app.use(errorHandlerController.get404);
       }
   }
 
-  connectToDataBase();
+  connectToDataBase()
