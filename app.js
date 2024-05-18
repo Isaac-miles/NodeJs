@@ -39,6 +39,8 @@ app.use(errorHandlerController.get404);
         sequelize.sync()
           .then(result=>{
             // console.log(result);
+            app.listen(PORT,()=>`server running on port ${PORT}`);
+
           }).catch(err=>console.log(err));
 
       } catch (error) {
