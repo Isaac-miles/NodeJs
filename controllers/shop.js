@@ -37,6 +37,7 @@ exports.getProducts = (req,res,next)=>{
 
 exports.getProductDetails = (req,res,next)=>{
     const requestParam = req.params.productId;
+    // ProductsModel.findAll({where:{id:requestParam}}).then().catch() another way of fetching a product
     ProductsModel.findByPk(requestParam)
         .then(product=>{
             res.render('shop/product-detail',
