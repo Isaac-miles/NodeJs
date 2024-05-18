@@ -20,7 +20,9 @@ exports.postAddProduct = (req,res,next)=>{
         description
     })
     .then(result=>{
-        console.log(result);
+        // console.log("created Product");
+        res.status(200).send(JSON.stringify({message:"created successfully"}));
+        
     })
     .catch(err=>console.log(err));
         
