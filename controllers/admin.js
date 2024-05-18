@@ -31,7 +31,8 @@ exports.getEditProduct = (req,res,next)=>{
     const editMode = req.query.edit;
     const prodId = req.params.productId;
     if(!editMode) res.redirect('/');
-    Product.findById(prodId,product=>{
+    Product.findAll({where:{id:prodId}})
+        .then(prodId,product=>{
         if(!product)res.redirect('/');
         res.render('admin/edit-product',
         {
@@ -40,12 +41,14 @@ exports.getEditProduct = (req,res,next)=>{
             editing:editMode,
             product
         });
-    });
+    })
+    .catch(err=>console.log(err));
    
 }
 
 exports.getProducts = (req,res,next)=>{
-    ProductsModel.fetchAll((products)=>{
+    ProductsModel.findAll()
+        .then((products)=>{
         res.render('admin/products',
         {
             pageTitle:'Admin products',
@@ -55,7 +58,8 @@ exports.getProducts = (req,res,next)=>{
             hasProducts:products.length>0,
             activeShop:true
         });
-     });
+     })
+     .catch(err=>console.log(err));
 }
 
 exports.updateProduct = (req,res,next)=>{
