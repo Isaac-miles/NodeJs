@@ -21,8 +21,7 @@ exports.postAddProduct = (req,res,next)=>{
     })
     .then(result=>{
         // console.log("created Product");
-        res.status(200).send(JSON.stringify({message:"created successfully"}));
-        
+        res.status(200).end();
     })
     .catch(err=>console.log(err));
         

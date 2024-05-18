@@ -5,28 +5,25 @@ const Cart = require('../models/cart');
 
 
 exports.getIndex = (req,res,next)=>{
-    Product.findAll()
-        .then(products=>{
-            res.render('shop/index',
-            {
-                pageTitle:'home page',
-                prods:products,
-                docTitle:'shop',
-                path:'/',
-                hasProducts:products.length>0,
-            });
-        })
-        .catch(err=>console.log(err));
+    ProductsModel.fetchAll()
+    .then(([rows,fieldData])=>{
+        console.log("fd",fieldData)
+        res.render('shop/index',
+        {
+            pageTitle:'home page',
+            prods:rows,
+            docTitle:'shop',
+            path:'/',
+            hasProducts:rows.length>0,
+        });
+
+    })
+    .catch(err=>{
+        console.log(err);
+    })
         
 }
 exports.getProducts = (req,res,next)=>{
-    ProductsModel.findAll()
-    .then(result=>{
-        res.render({
-
-        })
-    })
-    .catch(err=>console.log(err))
      ProductsModel.fetchAll()
         .then(([rows])=>{
             res.render('shop/product-list',
