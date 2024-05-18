@@ -32,14 +32,15 @@ exports.getEditProduct = (req,res,next)=>{
     const prodId = req.params.productId;
     if(!editMode) res.redirect('/');
     Product.findAll({where:{id:prodId}})
-        .then(prodId,product=>{
+        .then(product=>{
+            console.log(product)
         if(!product)res.redirect('/');
         res.render('admin/edit-product',
         {
             pageTitle:"edit product",
             path:'/admin/edit-product',
             editing:editMode,
-            product
+            product:product[0].dataValues
         });
     })
     .catch(err=>console.log(err));
@@ -64,10 +65,11 @@ exports.getProducts = (req,res,next)=>{
 
 exports.updateProduct = (req,res,next)=>{
     const {productId,title,price,description,imageUrl} = req.body;
-    const updatedProduct = new Product(productId,title,imageUrl,description,price);
-    updatedProduct.save();
-    // res.redirect('/admin/products');
+    ProductsModel.findByPk(productId)
+        .then(result=>{
 
+        })
+        .catch(err=>console.log(err));
 }
 exports.deleteProduct =(req,res,next)=>{
     const productId = req.body.productId;
