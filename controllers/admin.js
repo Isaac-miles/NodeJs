@@ -71,20 +71,25 @@ exports.updateProduct = (req,res,next)=>{
             product.price = price;
             product.description = description;
             product.imageUrl = imageUrl;
+            return product.save();
         })
+        .then(result=>res.redirect('/admin/products'))
         .catch(err=>console.log(err));
 }
+
 exports.deleteProduct =(req,res,next)=>{
     const productId = req.body.productId;
     if(!productId){
         res.status(404).send(JSON.stringify({message:"invalid product Id"}));
     }
-     Product.deleteProduct(productId, deletedProduct =>{
-         if(deletedProduct){
-         res.redirect('/admin/products');   
-        //  res.status(200).send(JSON.stringify({message:"product deleted"}));   
-         }else {
-        res.status(404).send(JSON.stringify({message:"product not found"}));
-     }
-     });
+    ProductsModel.findByPk(productId)
+    .then(product=>{
+       
+        return product.destroy();
+    })
+    .then(result=>{
+        console.log('destroy',result)
+        res.redirect('/admin/products')
+    })
+    .catch(err=>console.log(err));
 }
