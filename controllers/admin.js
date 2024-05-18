@@ -66,8 +66,11 @@ exports.getProducts = (req,res,next)=>{
 exports.updateProduct = (req,res,next)=>{
     const {productId,title,price,description,imageUrl} = req.body;
     ProductsModel.findByPk(productId)
-        .then(result=>{
-
+        .then(product=>{
+            product.title =title;
+            product.price = price;
+            product.description = description;
+            product.imageUrl = imageUrl;
         })
         .catch(err=>console.log(err));
 }
