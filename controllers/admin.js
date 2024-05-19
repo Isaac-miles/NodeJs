@@ -21,7 +21,7 @@ exports.postAddProduct = (req,res,next)=>{
     })
     .then(result=>{
         // console.log("created Product");
-        res.status(200).end();
+        res.redirect('/admin/products');
     })
     .catch(err=>console.log(err));
         
@@ -84,11 +84,9 @@ exports.deleteProduct =(req,res,next)=>{
     }
     ProductsModel.findByPk(productId)
     .then(product=>{
-       
         return product.destroy();
     })
     .then(result=>{
-        console.log('destroy',result)
         res.redirect('/admin/products')
     })
     .catch(err=>console.log(err));
