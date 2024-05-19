@@ -1,5 +1,4 @@
-const db = require('../utils/db');
-const Cart = require('./cart');
+
 const { Sequelize, DataTypes } = require('sequelize');
 const sequelize = require('../utils/db');
 
@@ -17,7 +16,7 @@ const Product = sequelize.define('product',{
         allowNull:false
     },
     imageUrl:{
-        type:Sequelize.STRING,
+        type:DataTypes.STRING,
         allowNull:false
     },
     description:{
