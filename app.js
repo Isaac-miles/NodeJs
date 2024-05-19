@@ -19,6 +19,15 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static(path.join(__dirname,'public')));
 
+app.use((req,res,next)=>{
+    UserModel.findByPk(1)
+    .then(user=>{
+        req.user = user;
+        next();
+    })
+    .catch(err=>console.log(err));
+})
+
 //you can add a filter to this base url
 app.use('/admin',adminRoutes);
 
