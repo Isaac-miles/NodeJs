@@ -6,6 +6,9 @@ const errorHandlerController = require('./controllers/errorHandlers')
 const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
 const sequelize = require('./utils/db');
+const ProductsModel = require('./models/product');
+const UserModel = require('./models/user');
+
 let PORT = 4000;
 const app = express();
 
@@ -27,11 +30,12 @@ app.use(errorHandlerController.get404);
 //     // console.log(result);
 // app.listen(PORT,()=>`server running on port ${PORT}`);
 
-
-
 //  }).catch(err=>console.log(err));
  
  async function connectToDataBase(){
+    ProductsModel.belongsTo(UserModel,{constraints:true, onDelete:'CASCADE' });
+    UserModel.hasMany(ProductsModel);
+    
     try {
 
         await sequelize.authenticate();

@@ -3,7 +3,7 @@ const { Sequelize, DataTypes } = require('sequelize');
 const sequelize = require('../utils/db');
 
 
-const Product = sequelize.define('product',{
+const ProductsModel = sequelize.define('product',{
     id:{
         type:DataTypes.INTEGER,
         autoIncrement:true,
@@ -25,7 +25,7 @@ const Product = sequelize.define('product',{
     }
 });
 
-module.exports = Product;
+module.exports = ProductsModel;
 
 // for core mysql queries
 // module.exports = class Product{
