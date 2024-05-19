@@ -69,8 +69,10 @@ exports.getCart = (req,res,next)=>{
 }
 exports.addToCart = (req,res,next)=>{
     const productId = req.body.productId;
+    let fetchedCart;
     req.user.getCart()
         .then(cart=>{
+            fetchedCart= cart;
             return cart.getProducts({where:{id:productId}});
         })
         .then(products=>{
@@ -84,7 +86,7 @@ exports.addToCart = (req,res,next)=>{
             }
             return ProductsModel.findByPk(productId)
                 .then(product=>{
-
+                    fetchedCart.addProduct(product,{through:{quantity:newQuantity}});
                 })
                 .catch(err=>console.log(err))
         })
