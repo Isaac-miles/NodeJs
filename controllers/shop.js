@@ -74,7 +74,19 @@ exports.addToCart = (req,res,next)=>{
             return cart.getProducts({where:{id:productId}});
         })
         .then(products=>{
-            
+            let product;
+            if(products.length > 0){
+                product = products[0];
+            }
+            let newQuantity = 1;
+            if(product){
+                //get the quantity and change it
+            }
+            return ProductsModel.findByPk(productId)
+                .then(product=>{
+
+                })
+                .catch(err=>console.log(err))
         })
         .catch(err=>console.log(err))
     // res.redirect('/cart');
