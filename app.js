@@ -49,8 +49,8 @@ app.use(errorHandlerController.get404);
 
         await sequelize.authenticate();
         console.log('Connection has been established successfully.');
-        sequelize.sync({force:true}) // on load the app drops existing tables and create a new one
-        // sequelize.sync()
+        // sequelize.sync({force:true}) // on load the app drops existing tables and create a new one
+        sequelize.sync()
           .then(result=>{
             return UserModel.findByPk(1);
           })
@@ -65,6 +65,7 @@ app.use(errorHandlerController.get404);
           })
           .then(user=>{
             // console.log(user);
+            user.createCart();
             app.listen(PORT,()=>`server running on port ${PORT}`);
 
           })
@@ -75,4 +76,4 @@ app.use(errorHandlerController.get404);
       }
   }
 
-  connectToDataBase();
+//   connectToDataBase();
