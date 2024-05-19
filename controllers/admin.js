@@ -1,4 +1,4 @@
-const Product = require('../models/product');
+const { where } = require('sequelize');
 const ProductsModel = require('../models/product');
 
 exports.getAddProduct = (req,res,next)=>{
@@ -13,11 +13,11 @@ exports.getAddProduct = (req,res,next)=>{
 
 exports.postAddProduct = (req,res,next)=>{
     const {title,imageUrl,description,price} = req.body;
-    Product.create({
+    req.user.createProduct({
         title,
         price,
         imageUrl,
-        description
+        description,
     })
     .then(result=>{
         // console.log("created Product");
@@ -31,7 +31,8 @@ exports.getEditProduct = (req,res,next)=>{
     const editMode = req.query.edit;
     const prodId = req.params.productId;
     if(!editMode) res.redirect('/');
-    Product.findAll({where:{id:prodId}})
+    // ProductsModel.findAll({where:{id:prodId}})
+        req.user.getProducts({where:{id:prodId}})
         .then(product=>{
             console.log(product)
         if(!product)res.redirect('/');
@@ -48,7 +49,8 @@ exports.getEditProduct = (req,res,next)=>{
 }
 
 exports.getProducts = (req,res,next)=>{
-    ProductsModel.findAll()
+    // ProductsModel.findAll() instead of getting all products, find the user's specific products
+    req.user.getProducts()
         .then((products)=>{
         res.render('admin/products',
         {
