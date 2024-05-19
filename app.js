@@ -40,7 +40,7 @@ app.use(errorHandlerController.get404);
     ProductsModel.belongsTo(UserModel,{constraints:true, onDelete:'CASCADE' });
     UserModel.hasMany(ProductsModel);
     UserModel.hasOne(CartModel);
-    CartModel.belongsTo(UserModel);
+    CartModel.belongsTo(UserModel); //optional the above one direction is enough
     CartModel.belongsToMany(ProductsModel,{through:CartItemModel});
     ProductsModel.belongsToMany(CartModel,{through:CartItemModel});
 
