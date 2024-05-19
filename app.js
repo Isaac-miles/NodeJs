@@ -8,7 +8,8 @@ const shopRoutes = require('./routes/shop');
 const sequelize = require('./utils/db');
 const ProductsModel = require('./models/product');
 const UserModel = require('./models/user');
-const { name } = require('ejs');
+const CartModel = require('./models/cart');
+const CartItemModel = require('./models/cart-item');
 
 let PORT = 4000;
 const app = express();
@@ -35,23 +36,21 @@ app.use(shopRoutes);
 
 app.use(errorHandlerController.get404);
 
-// sequelize.sync()
-//  .then(result=>{
-//     // console.log(result);
-// app.listen(PORT,()=>`server running on port ${PORT}`);
-
-//  }).catch(err=>console.log(err));
- 
  async function connectToDataBase(){
     ProductsModel.belongsTo(UserModel,{constraints:true, onDelete:'CASCADE' });
     UserModel.hasMany(ProductsModel);
+    UserModel.hasOne(CartModel);
+    CartModel.belongsTo(UserModel);
+    CartModel.belongsToMany(ProductsModel,{through:CartItemModel});
+    ProductsModel.belongsToMany(CartModel,{through:CartItemModel});
+
 
     try {
 
         await sequelize.authenticate();
         console.log('Connection has been established successfully.');
-        // sequelize.sync({force:true}) // on load the app drops existing tables and create a new one
-        sequelize.sync()
+        sequelize.sync({force:true}) // on load the app drops existing tables and create a new one
+        // sequelize.sync()
           .then(result=>{
             return UserModel.findByPk(1);
           })
