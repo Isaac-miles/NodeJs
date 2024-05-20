@@ -95,21 +95,46 @@ exports.addToCart = (req,res,next)=>{
         .then(()=>res.redirect('/cart'))
         .catch(err=>console.log(err))
 }
-exports.getOrders = (req,res,next)=>{
-    res.render('shop/orders',
-    {
-        pageTitle:'your orders',
-        docTitle:'shop',
-        path:'/orders',
-    });
+
+
+exports.postOrder= (req,res,next)=>{
+    let fetchedCart;
+    req.user.getCart()
+        .then(cart=>{
+            fetchedCart = cart;
+            return cart.getProducts();
+        })
+        .then(products=>{
+            return req.user.createOrder()
+                  .then(order=>{
+                    console.log(order)
+                   return  order.addProducts(products.map(product=>{
+                        product.orderItem={quantity:product.cartItem.quantity};
+                        return product;
+                    }))
+                })
+        })
+        .then(result=>{
+          return  fetchedCart.setProducts(null);
+        })
+        .then(result=>{
+            res.redirect('/orders');
+        })
+        .catch(err=>console.log(err));
 }
-exports.getCheckout = (req,res,next)=>{
-    res.render('shop/checkout',
-    {
-        pageTitle:'checkout',
-        docTitle:'shop',
-        path:'/checkout',
-    });
+exports.getOrders = (req,res,next)=>{
+    req.user.getOrders()
+        .then(orders=>{
+            res.render('shop/orders',
+            {
+                pageTitle:'your orders',
+                docTitle:'shop',
+                path:'/orders',
+                orders
+            });
+        })
+        .catch(err=>console.log(err));
+
 }
 
 exports.deleteCartItem =(req,res,next)=>{
@@ -126,25 +151,4 @@ exports.deleteCartItem =(req,res,next)=>{
           res.redirect('/cart')
         })
         .catch(err=>console.log(err))
-}
-
-exports.postOrder= (req,res,next)=>{
-    req.user.getCart()
-        .then(cart=>{
-            return cart.getProducts();
-        })
-        .then(products=>{
-            return req.user.createOrder()
-                  .then(order=>{
-                    console.log(order)
-                   return  order.addProducts(products.map(product=>{
-                        product.orderItem={quantity:product.cartItem.quantity};
-                        return product;
-                    }))
-                })
-        })
-        .then(result=>{
-            res.redirect('/orders')
-        })
-        .catch(err=>console.log(err));
 }
