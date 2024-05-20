@@ -1,9 +1,32 @@
 <%- include('../includes/head.ejs') %>
-    </head>
+<link rel="stylesheet" href="/css/orders.css">
+</head>
 
-    <body>
-        <%- include('../includes/navigation.ejs') %>
-        <main>
+<body>
+    <%- include('../includes/navigation.ejs') %>
+    <main>
+        <% if (orders.length <= 0) { %>
             <h1>Nothing there!</h1>
-        </main>
-        <%- include('../includes/end.ejs') %>
+        <% } else { %>
+            <ul class="orders">
+                <% orders.forEach(order => { %>
+                    <li class="orders__item">
+                        <h1>Order - # <%= order.dataValues.id %></h1>
+                        <ul class="orders__products">
+                            <% if (order.dataValues.products && order.dataValues.products.length > 0) { %>
+                                <% order.dataValues.products.forEach(product => { %>
+                                    <li class="orders__products-item">
+                                        <%= product.dataValues.title %> (<%= product.dataValues.quantity %>)
+                                    </li>
+                                <% }); %>
+                            <% } else { %>
+                                <li>No products found for this order.</li>
+                            <% } %>
+                        </ul>
+                    </li>
+                <% }); %>
+            </ul>
+        <% } %>
+    </main>
+    <%- include('../includes/end.ejs') %>
+</body>

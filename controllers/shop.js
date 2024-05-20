@@ -122,20 +122,38 @@ exports.postOrder= (req,res,next)=>{
         })
         .catch(err=>console.log(err));
 }
-exports.getOrders = (req,res,next)=>{
-    req.user.getOrders()
-        .then(orders=>{
-            res.render('shop/orders',
-            {
-                pageTitle:'your orders',
-                docTitle:'shop',
-                path:'/orders',
-                orders
-            });
-        })
-        .catch(err=>console.log(err));
 
-}
+exports.getOrders = (req, res, next) => {
+    req.user
+      .getOrders()
+      .then(orders => {
+        console.log(orders)
+        res.render('shop/orders', {
+          path: '/orders',
+          pageTitle: 'Your Orders',
+          orders: orders
+        });
+      })
+      .catch(err => console.log(err));
+  };
+// exports.getOrders = (req,res,next)=>{
+//     req.user.getOrders({include:['products']})
+//         .then(orders=>{
+//             orders.forEach(product => {
+//                 const { dataValues: productDataValues } = product;
+//                  res.render('shop/orders',
+//             {
+//                 pageTitle:'your orders',
+//                 docTitle:'shop',
+//                 path:'/orders',
+//                 orders
+//             });
+//             });
+           
+//         })
+//         .catch(err=>console.log(err));
+
+// }
 
 exports.deleteCartItem =(req,res,next)=>{
     const id = req.body.productId;
