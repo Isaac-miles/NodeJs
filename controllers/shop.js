@@ -134,5 +134,12 @@ exports.deleteCartItem =(req,res,next)=>{
 }
 
 exports.postOrder= (req,res,next)=>{
-    
+    req.user.getCart()
+        .then(cart=>{
+            return cart.getProducts();
+        })
+        .then(product=>{
+            console.log(product);
+        })
+        .catch(err=>console.log(err));
 }
