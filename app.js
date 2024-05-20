@@ -10,6 +10,8 @@ const ProductsModel = require('./models/product');
 const UserModel = require('./models/user');
 const CartModel = require('./models/cart');
 const CartItemModel = require('./models/cart-item');
+const OrderModel = require('./models/order');
+const OrderItemModel = require('./models/order-item');
 
 let PORT = 4000;
 const app = express();
@@ -43,7 +45,9 @@ app.use(errorHandlerController.get404);
     CartModel.belongsTo(UserModel); //optional the above one direction is enough
     CartModel.belongsToMany(ProductsModel,{through:CartItemModel});
     ProductsModel.belongsToMany(CartModel,{through:CartItemModel});
-
+    OrderModel.belongsTo(UserModel);
+    UserModel.hasMany(OrderModel);
+    OrderModel.belongsToMany(ProductsModel,{through:OrderItemModel});
 
     try {
 
