@@ -1,6 +1,7 @@
 const Product = require('../models/product');
 const ProductsModel = require('../models/product');
 const Cart = require('../models/cart');
+const { where } = require('sequelize');
 
 
 
@@ -120,12 +121,14 @@ exports.deleteCartItem =(req,res,next)=>{
     req.user
         .getCart()
         .then(cart=>{
-
+            return cart.getProducts({where:{id:id}});
+        })
+        .then(products=>{
+            const product = products[0];
+            return product.cartItem.destroy();
+        })
+        .then(result=>{
+          res.redirect('/cart')
         })
         .catch(err=>console.log(err))
-
-    // Product.findById(id,product=>{
-    //   Cart.deleteProduct(id,product.price);
-    //     res.redirect('/cart')
-    // })
 }
