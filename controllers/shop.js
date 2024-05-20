@@ -117,8 +117,15 @@ exports.getCheckout = (req,res,next)=>{
 
 exports.deleteCartItem =(req,res,next)=>{
     const id = req.body.productId;
-    Product.findById(id,product=>{
-      Cart.deleteProduct(id,product.price);
-        res.redirect('/cart')
-    })
+    req.user
+        .getCart()
+        .then(cart=>{
+
+        })
+        .catch(err=>console.log(err))
+
+    // Product.findById(id,product=>{
+    //   Cart.deleteProduct(id,product.price);
+    //     res.redirect('/cart')
+    // })
 }
