@@ -1,9 +1,5 @@
 const Product = require('../models/product');
 const ProductsModel = require('../models/product');
-const Cart = require('../models/cart');
-const { where } = require('sequelize');
-
-
 
 exports.getIndex = (req,res,next)=>{
     Product.findAll()
@@ -118,8 +114,7 @@ exports.getCheckout = (req,res,next)=>{
 
 exports.deleteCartItem =(req,res,next)=>{
     const id = req.body.productId;
-    req.user
-        .getCart()
+    req.user.getCart()
         .then(cart=>{
             return cart.getProducts({where:{id:id}});
         })
@@ -138,8 +133,18 @@ exports.postOrder= (req,res,next)=>{
         .then(cart=>{
             return cart.getProducts();
         })
-        .then(product=>{
-            console.log(product);
+        .then(products=>{
+            return req.user.createOrder()
+                  .then(order=>{
+                    console.log(order)
+                   return  order.addProducts(products.map(product=>{
+                        product.orderItem={quantity:product.cartItem.quantity};
+                        return product;
+                    }))
+                })
+        })
+        .then(result=>{
+            res.redirect('/orders')
         })
         .catch(err=>console.log(err));
 }
