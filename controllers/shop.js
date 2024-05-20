@@ -132,3 +132,7 @@ exports.deleteCartItem =(req,res,next)=>{
         })
         .catch(err=>console.log(err))
 }
+
+exports.postOrder= (req,res,next)=>{
+    
+}
