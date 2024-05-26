@@ -48,7 +48,7 @@ app.use(errorHandlerController.get404);
     OrderModel.belongsTo(UserModel);
     UserModel.hasMany(OrderModel);
     // ProductsModel.belongsToMany(OrderModel,{through:OrderItemModel});
-    OrderModel.belongsToMany(ProductsModel,{through:OrderItemModel})
+    // OrderModel.belongsToMany(ProductsModel,{through:OrderItemModel})
 
     try {
 
