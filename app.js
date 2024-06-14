@@ -30,7 +30,6 @@ app.use(shopRoutes);
 
 app.use(errorHandlerController.get404);
 
-connectMongoDb((client)=>{
-    console.log("Connection Established");
+connectMongoDb(()=>{
     app.listen(PORT,()=>console.log('server running on: ', PORT));
 })
