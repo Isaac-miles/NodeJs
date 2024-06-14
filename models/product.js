@@ -1,7 +1,14 @@
 
 class Product {
     constructor(title,price,description,imageUrl){
-        
+        this.title = title;
+        this.price = price;
+        this.description = price;
+        this.imageUrl = imageUrl;
+    }
+
+    save(){
+
     }
 }
 
