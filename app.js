@@ -2,8 +2,8 @@ const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 const errorHandlerController = require('./controllers/errorHandlers')
-// const adminRoutes = require('./routes/admin');
-// const shopRoutes = require('./routes/shop');
+const adminRoutes = require('./routes/admin');
+const shopRoutes = require('./routes/shop');
 const connectMongoDb = require('./utils/db._mongodb');
 
 let PORT = 4000;
@@ -25,8 +25,8 @@ app.use(express.static(path.join(__dirname,'public')));
 // })
 
 //you can add a filter to this base url
-// app.use('/admin',adminRoutes);
-// app.use(shopRoutes);
+app.use('/admin',adminRoutes);
+app.use(shopRoutes);
 
 app.use(errorHandlerController.get404);
 

@@ -1,10 +1,6 @@
 
-class Product {
-    constructor(title,price,description,imageUrl){
-        
-    }
-}
-
+const { Sequelize, DataTypes } = require('sequelize');
+const sequelize = require('../utils/db');
 
 
 const ProductsModel = sequelize.define('product',{
