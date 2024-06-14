@@ -1,10 +1,11 @@
 const mongodb = require('mongodb');
 const MongoClient = mongodb.MongoClient;
 
+const URI ='mongodb+srv://exploreNode:h3i1xfx8tS1G7GHE@cluster0.hp6xb.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'
 const connectToMongodb =(callback)=>{
-    MongoClient.connect("mongodb+srv://exploreNode:exploreNode @cluster0.hp6xb.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+    MongoClient.connect(URI)
     .then(result=>{
-        callback("Connection Established");
+        callback(result);
     })
     .catch(err=>console.log(err));
 }

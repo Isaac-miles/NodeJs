@@ -2,11 +2,9 @@ const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 const errorHandlerController = require('./controllers/errorHandlers')
-const adminRoutes = require('./routes/admin');
-const shopRoutes = require('./routes/shop');
-
-const UserModel = require('./models/user');
-
+// const adminRoutes = require('./routes/admin');
+// const shopRoutes = require('./routes/shop');
+const connectMongoDb = require('./utils/db._mongodb');
 
 let PORT = 4000;
 const app = express();
@@ -27,12 +25,12 @@ app.use(express.static(path.join(__dirname,'public')));
 // })
 
 //you can add a filter to this base url
-app.use('/admin',adminRoutes);
-
-app.use(shopRoutes);
+// app.use('/admin',adminRoutes);
+// app.use(shopRoutes);
 
 app.use(errorHandlerController.get404);
 
-
-
-  // mongodb+srv://<username>:<password>@cluster0.hp6xb.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+connectMongoDb((client)=>{
+    console.log("Connection Established");
+    app.listen(PORT,()=>console.log('server running on: ', PORT));
+})
