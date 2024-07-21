@@ -6,12 +6,12 @@ Router.get('/add-product',adminController.getAddProduct);
 
 Router.post('/add-product',adminController.postAddProduct);
 
-Router.get('/products',adminController.getProducts);
+// Router.get('/products',adminController.getProducts);
 
-Router.get('/edit-product/:productId',adminController.getEditProduct);
+// Router.get('/edit-product/:productId',adminController.getEditProduct);
 
-Router.post('/edit-product',adminController.updateProduct);
+// Router.post('/edit-product',adminController.updateProduct);
 
-Router.post('/delete-product',adminController.deleteProduct);
+// Router.post('/delete-product',adminController.deleteProduct);
 
 module.exports = Router;
