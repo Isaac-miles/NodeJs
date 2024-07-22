@@ -17,7 +17,7 @@ const connectMongoDB =(callback)=>{
 });
 };
 
-const getDb = ()=>{
+const getDB = ()=>{
     if(_db){
         return _db
     }else{

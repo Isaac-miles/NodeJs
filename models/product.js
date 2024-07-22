@@ -1,4 +1,4 @@
-const getDB = require('../utils/db._mongodb').getDb();
+const getDB = require('../utils/db._mongodb');
 class ProductsModel {
     constructor(title,price,description,imageUrl){
         this.title = title;
@@ -8,7 +8,7 @@ class ProductsModel {
     }
 
     save(){
-        const db = getDb();
+        const db = getDB();
         db.collection('products').insertOne(this)
             .then(result=>{
                 console.log(result)
