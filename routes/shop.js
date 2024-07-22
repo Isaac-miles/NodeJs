@@ -8,16 +8,17 @@ const shopController =require('../controllers/shop')
 Router.get('/',shopController.getIndex);
 
 Router.get('/products',shopController.getProducts);
-Router.get('/products/:productId',shopController.getProductDetails);
 
-Router.get('/cart',shopController.getCart);
+// Router.get('/products/:productId',shopController.getProductDetails);
 
-Router.post('/cart',shopController.addToCart);
+// Router.get('/cart',shopController.getCart);
 
-Router.get('/orders',shopController.getOrders);
+// Router.post('/cart',shopController.addToCart);
 
-Router.post('/cart-delete-item',shopController.deleteCartItem);
+// Router.get('/orders',shopController.getOrders);
 
-Router.post('/create-order',shopController.postOrder);
+// Router.post('/cart-delete-item',shopController.deleteCartItem);
+
+// Router.post('/create-order',shopController.postOrder);
 
 module.exports = Router; 

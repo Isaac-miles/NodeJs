@@ -17,7 +17,7 @@ exports.getIndex = (req,res,next)=>{
         
 }
 exports.getProducts = (req,res,next)=>{
-    ProductsModel.findAll()
+    ProductsModel.fetchAll()
     .then(result=>{
         res.render('shop/product-list',{
             pageTitle:'All products',
