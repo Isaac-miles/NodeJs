@@ -21,7 +21,7 @@ const getDB = ()=>{
     if(_db){
         return _db
     }else{
-        throw "No database found !";
+        throw new Error("No database found !");
     }
 }
 
