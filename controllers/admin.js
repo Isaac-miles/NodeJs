@@ -13,13 +13,10 @@ exports.getAddProduct = (req,res,next)=>{
 
 exports.postAddProduct = (req,res,next)=>{
     const {title,imageUrl,description,price} = req.body;
-    req.user.createProduct({
-        title,
-        price,
-        imageUrl,
-        description,
-    })
+   const product = new ProductsModel(title,price,description,imageUrl);
+   product.save()
     .then(result=>{
+        console.log(result);
         res.redirect('/admin/products');
     })
     .catch(err=>console.log(err));
