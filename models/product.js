@@ -23,7 +23,6 @@ class ProductsModel {
         .find()
         .toArray()
         .then(products=>{
-            console.log(products)
             return products
         })
         .catch(err=>console.log(err));
