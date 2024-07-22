@@ -2,7 +2,7 @@ const Product = require('../models/product');
 const ProductsModel = require('../models/product');
 
 exports.getIndex = (req,res,next)=>{
-    Product.findAll()
+    Product.fetchAll()
         .then(products=>{
             res.render('shop/index',
             {

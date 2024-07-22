@@ -17,6 +17,7 @@ class ProductsModel {
     }
 
     static fetchAll(){
+        const db = getDB();
         return db.collection('products')
         .find()
         .toArray()
