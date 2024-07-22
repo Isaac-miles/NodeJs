@@ -1,4 +1,4 @@
-const getDB = require('../utils/db._mongodb');
+const getDB = require('../utils/db._mongodb').getDB;
 class ProductsModel {
     constructor(title,price,description,imageUrl){
         this.title = title;
