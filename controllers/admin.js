@@ -1,6 +1,22 @@
 const { where } = require('sequelize');
 const ProductsModel = require('../models/product');
 
+
+exports.getProducts = (req,res,next)=>{
+    ProductsModel.fetchAll()
+        .then((products)=>{
+        res.render('admin/products',
+        {
+            pageTitle:'Admin products',
+            prods:products,
+            docTitle:'shop',
+            path:'/admin/products',
+            hasProducts:products.length>0,
+            activeShop:true
+        });
+     })
+     .catch(err=>console.log(err));
+}
 exports.getAddProduct = (req,res,next)=>{
     res.render('admin/edit-product',
     {
@@ -23,55 +39,40 @@ exports.postAddProduct = (req,res,next)=>{
         
 }
 
-// exports.getEditProduct = (req,res,next)=>{
-//     const editMode = req.query.edit;
-//     const prodId = req.params.productId;
-//     if(!editMode) res.redirect('/');
-//         req.user.getProducts({where:{id:prodId}})
-//         .then(product=>{
-//             console.log(product)
-//         if(!product)res.redirect('/');
-//         res.render('admin/edit-product',
-//         {
-//             pageTitle:"edit product",
-//             path:'/admin/edit-product',
-//             editing:editMode,
-//             product:product[0].dataValues
-//         });
-//     })
-//     .catch(err=>console.log(err));
-   
-// }
+exports.getEditProduct = (req,res,next)=>{
+    const editMode = req.query.edit;
+    if(!editMode) res.redirect('/');
+    const prodId = req.params.productId;
 
-exports.getProducts = (req,res,next)=>{
-    ProductsModel.fetchAll()
-        .then((products)=>{
-        res.render('admin/products',
+        // req.user.getProducts({where:{id:prodId}})
+        ProductsModel.findById(prodId)
+        .then(product=>{
+           if(!product)res.redirect('/');
+        res.render('admin/edit-product',
         {
-            pageTitle:'Admin products',
-            prods:products,
-            docTitle:'shop',
-            path:'/admin/products',
-            hasProducts:products.length>0,
-            activeShop:true
+            pageTitle:"edit product",
+            path:'/admin/edit-product',
+            editing:editMode,
+            product:product
         });
-     })
-     .catch(err=>console.log(err));
+    })
+    .catch(err=>console.log(err));
+   
 }
 
-// exports.updateProduct = (req,res,next)=>{
-//     const {productId,title,price,description,imageUrl} = req.body;
-//     ProductsModel.findByPk(productId)
-//         .then(product=>{
-//             product.title =title;
-//             product.price = price;
-//             product.description = description;
-//             product.imageUrl = imageUrl;
-//             return product.save();
-//         })
-//         .then(result=>res.redirect('/admin/products'))
-//         .catch(err=>console.log(err));
-// }
+exports.updateProduct = (req,res,next)=>{
+    const {productId,title,price,description,imageUrl} = req.body;
+    ProductsModel.findByPk(productId)
+        .then(product=>{
+            product.title =title;
+            product.price = price;
+            product.description = description;
+            product.imageUrl = imageUrl;
+            return product.save();
+        })
+        .then(result=>res.redirect('/admin/products'))
+        .catch(err=>console.log(err));
+}
 
 // exports.deleteProduct =(req,res,next)=>{
 //     const productId = req.body.productId;
