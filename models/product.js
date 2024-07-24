@@ -16,12 +16,13 @@ class ProductsModel {
         let query;
         if(this._id){
             //update the product
-            
+            query = db.collection('products').updateOne({_id: createFromHexString(this._id)},{$set:this});
+
         }else{
             query = db.collection('products').insertOne(this)
 
         }
-        return db.collection('products').insertOne(this)
+        return query
             .then(result=>{
                 console.log(result)
             })
