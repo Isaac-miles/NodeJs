@@ -39,7 +39,7 @@ exports.getProductDetails = (req,res,next)=>{
             res.render('shop/product-detail',
             {
                 pageTitle:'Product-detail page',
-                product:product.dataValues,
+                product:product,
                 docTitle:'Product detail',
                 path:'/products',
             })
