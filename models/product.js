@@ -8,19 +8,25 @@ class ProductsModel {
         this.price = price;
         this.description = description;
         this.imageUrl = imageUrl;
-        this._id = id;
+        this._id = id ? ObjectId.createFromHexString(id) :null;
     }
 
     save(){
         const db = getDB();
         let query;
-        if(this._id){
-            //update the product
-            query = db.collection('products').updateOne({_id: createFromHexString(this._id)},{$set:this});
 
-        }else{
-            query = db.collection('products').insertOne(this)
-
+        if (this._id) {
+            // Update the product
+            console.log(`Updating product with id: ${this._id}`);
+            query = db.collection('products')
+            .updateOne(
+                { _id:this._id},
+                { $set: this }
+            );
+        } else {
+            // Insert the product
+            console.log('Inserting new product');
+            query = db.collection('products').insertOne(this);
         }
         return query
             .then(result=>{
