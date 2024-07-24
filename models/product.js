@@ -6,7 +6,7 @@ class ProductsModel {
     constructor(title,price,description,imageUrl,id){
         this.title = title;
         this.price = price;
-        this.description = price;
+        this.description = description;
         this.imageUrl = imageUrl;
         this._id = id;
     }

@@ -1,4 +1,4 @@
-const { where } = require('sequelize');
+const {mongodb,ObjectId} = require('mongodb');
 const ProductsModel = require('../models/product');
 
 
@@ -62,14 +62,9 @@ exports.getEditProduct = (req,res,next)=>{
 
 exports.updateProduct = (req,res,next)=>{
     const {productId,title,price,description,imageUrl} = req.body;
-    ProductsModel.findByPk(productId)
-        .then(product=>{
-            product.title =title;
-            product.price = price;
-            product.description = description;
-            product.imageUrl = imageUrl;
-            return product.save();
-        })
+     const product = new ProductsModel(title,price,imageUrl,description,new createFromHexString(productId))
+
+     ProductsModel.save()
         .then(result=>res.redirect('/admin/products'))
         .catch(err=>console.log(err));
 }
