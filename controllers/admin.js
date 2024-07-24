@@ -1,4 +1,4 @@
-const {mongodb,ObjectId} = require('mongodb');
+const {createFromHexString} = require('mongodb');
 const ProductsModel = require('../models/product');
 
 
@@ -62,9 +62,9 @@ exports.getEditProduct = (req,res,next)=>{
 
 exports.updateProduct = (req,res,next)=>{
     const {productId,title,price,description,imageUrl} = req.body;
-     const product = new ProductsModel(title,price,imageUrl,description,new createFromHexString(productId))
+     const product = new ProductsModel(title,price,imageUrl,description,createFromHexString(productId))
 
-     ProductsModel.save()
+     product.save()
         .then(result=>res.redirect('/admin/products'))
         .catch(err=>console.log(err));
 }
