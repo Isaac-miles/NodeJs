@@ -69,17 +69,14 @@ exports.updateProduct = (req,res,next)=>{
         .catch(err=>console.log(err));
 }
 
-// exports.deleteProduct =(req,res,next)=>{
-//     const productId = req.body.productId;
-//     if(!productId){
-//         res.status(404).send(JSON.stringify({message:"invalid product Id"}));
-//     }
-//     ProductsModel.findByPk(productId)
-//     .then(product=>{
-//         return product.destroy();
-//     })
-//     .then(result=>{
-//         res.redirect('/admin/products')
-//     })
-//     .catch(err=>console.log(err));
-// }
+exports.deleteProduct =(req,res,next)=>{
+    const productId = req.body.productId;
+    if(!productId){
+        res.status(404).send(JSON.stringify({message:"invalid product Id"}));
+    }
+    ProductsModel.deleteById(productId)
+    .then(result=>{
+        res.redirect('/admin/products')
+    })
+    .catch(err=>console.log(err));
+}

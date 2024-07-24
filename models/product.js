@@ -56,10 +56,10 @@ class ProductsModel {
             })
             .catch(err=>console.log(err));
     }
-    static deleteById(){
+    static deleteById(id){
         const db = getDB();
         return db.collection('products')
-        .deleteOne(ObjectId.createFromHexString(id))
+        .deleteOne({_id:ObjectId.createFromHexString(id)})
         .then(result=>console.log(result))
         .catch(err=>console.log(err))
     }
