@@ -43,22 +43,21 @@ exports.postAddProduct = (req,res,next)=>{
    
 // }
 
-// exports.getProducts = (req,res,next)=>{
-//     // ProductsModel.findAll() instead of getting all products, find the user's specific products
-//     req.user.getProducts()
-//         .then((products)=>{
-//         res.render('admin/products',
-//         {
-//             pageTitle:'Admin products',
-//             prods:products,
-//             docTitle:'shop',
-//             path:'/admin/products',
-//             hasProducts:products.length>0,
-//             activeShop:true
-//         });
-//      })
-//      .catch(err=>console.log(err));
-// }
+exports.getProducts = (req,res,next)=>{
+    ProductsModel.fetchAll()
+        .then((products)=>{
+        res.render('admin/products',
+        {
+            pageTitle:'Admin products',
+            prods:products,
+            docTitle:'shop',
+            path:'/admin/products',
+            hasProducts:products.length>0,
+            activeShop:true
+        });
+     })
+     .catch(err=>console.log(err));
+}
 
 // exports.updateProduct = (req,res,next)=>{
 //     const {productId,title,price,description,imageUrl} = req.body;
