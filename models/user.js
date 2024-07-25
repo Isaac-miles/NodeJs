@@ -70,6 +70,11 @@ class UserModel {
     })
    }
 
+   deleteItemFromCart(productId){
+    const updatedCart = this.cart.items.filter(item=>{
+        return item.productId.toString() !== productId.toString()
+    });
+   }
 }
 
 
