@@ -71,6 +71,7 @@ class UserModel {
    }
 
    deleteItemFromCart(productId){
+    const db=getDB();
     const updatedCart = this.cart.items.filter(item=>{
         return item.productId.toString() !== productId.toString()
     });
