@@ -52,7 +52,6 @@ class ProductsModel {
         return db.collection('products')
             .findOne({_id: ObjectId.createFromHexString(id)})
             .then(product=>{
-                console.log(product)
                 return product
             })
             .catch(err=>console.log(err));

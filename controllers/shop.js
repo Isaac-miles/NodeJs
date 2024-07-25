@@ -59,10 +59,11 @@ exports.getCart = (req,res,next)=>{
                                 products:products
                             });
                 })
-                .then(err=>console.log(err))
+                .then(result=>console.log("result"))
         })
         .catch(err=>console.log(err)) 
 }
+
 exports.addToCart = (req,res,next)=>{
     const productId = req.body.productId;
     ProductsModel.findById(productId)
@@ -70,7 +71,7 @@ exports.addToCart = (req,res,next)=>{
             return req.user.addToCart(product);
         })
         .then(result=>{
-            console.log(result)
+           console.log(result)
         })
     // let fetchedCart;
     // let newQuantity = 1;

@@ -22,20 +22,23 @@ class UserModel {
 
     addToCart(product){
          const db = getDB();
-        const existingProduct = this.cart?.items?.findIndex(ep=>{
-            return ep.productId=== product._id;
+        const existingProductIndex = this.cart?.items.findIndex(cartProduct=>{
+            return cartProduct.productId.toString() === product._id.toString();
         });
 
         let newQuantity = 1
+        let updatedCartItems = [...this.cart.items];
 
-        if(existingProduct >=0){
-            // const updatedCartItem = existingProduct.
-            console.log(existingProduct)
-
+        if(existingProductIndex >=0){
+            // updatedCartItems = [...this.cart.items]
+            newQuantity = this.cart.items[existingProductIndex].quantity + 1
+            updatedCartItems[existingProductIndex].quantity = newQuantity;
         }else{
-            const updatedCart = {items:[{productId:product._id, quantity:1}] };
-         return db.collection('users').updateOne({_id:this._id},{$set:{cart:updatedCart}})
+            updatedCartItems.push({productId:product._id, quantity:newQuantity})
         }
+
+        const updatedCart = {items:updatedCartItems};
+        return db.collection('users').updateOne({_id:this._id},{$set:{cart:updatedCart}})
     }
     static findById(id){
         const db= getDB();

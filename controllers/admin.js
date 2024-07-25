@@ -32,7 +32,7 @@ exports.postAddProduct = (req,res,next)=>{
    const product = new ProductsModel(title,price,description,imageUrl,null,req.user._id);
    product.save()
     .then(result=>{
-        console.log(result);
+        // console.log(result);
         res.redirect('/admin/products');
     })
     .catch(err=>console.log(err));
