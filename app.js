@@ -21,7 +21,7 @@ app.use(express.static(path.join(__dirname,'public')));
 app.use((req,res,next)=>{
     UserModel.findById("66a23123eff695d7f35a9ced")
     .then(user=>{
-        req.user = user;
+        req.user = new UserModel(user.name,user.email,user.cart,user._id);
         next();
     })
     .catch(err=>{

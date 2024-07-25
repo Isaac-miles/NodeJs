@@ -1,9 +1,11 @@
 const {ObjectId} = require('mongodb');
 const getDB = require('../utils/db._mongodb').getDB;
 class UserModel {
-    constructor(username, email){
+    constructor(username, email,cart,id){
         this.name = username
         this.email = email
+        this.cart= cart
+        this._id = id
     }
 
     save(){
@@ -18,6 +20,19 @@ class UserModel {
         }
     }
 
+    addToCart(product){
+         const db = getDB();
+        const existingProduct = this.cart.items.findIndex(ep=>{
+            return ep._id=== product._id;
+        });
+
+        if(existingProduct){
+
+        }else{
+            const updatedCart = {items:[{...product,quantity:1}] };
+         return db.collection('users').updateOne({_id:ObjectId.createFromHexString(id)},{$set:{cart:updatedCart}})
+        }
+    }
     static findById(id){
         const db= getDB();
         if(db){
