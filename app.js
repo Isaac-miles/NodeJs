@@ -24,8 +24,10 @@ app.use((req,res,next)=>{
         req.user = user;
         next();
     })
-    .catch(err=>console.log(err));
-    next();
+    .catch(err=>{
+        console.log(err)
+        next(err);
+    });
 })
 
 //you can add a filter to this base url

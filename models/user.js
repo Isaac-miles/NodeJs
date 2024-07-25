@@ -21,11 +21,8 @@ class UserModel {
     static findById(id){
         const db= getDB();
         if(db){
-            db.collection('users').findOne({_id:ObjectId.createFromHexString(id)})
-            .then(result=>{
-                return result
-            })
-            .catch(err=>console.log(err))
+           return db.collection('users').findOne({_id:ObjectId.createFromHexString(id)})
+           
         }else{
             console.log("failed to establish connection to the data base")
         }
