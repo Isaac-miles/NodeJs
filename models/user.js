@@ -50,16 +50,6 @@ class UserModel {
 
        const updatedCart = {items:updatedCartItems};
        return db.collection('users').updateOne({_id:this._id},{$set:{cart:updatedCart}})
-        .toArray()
-        .then(products=>{
-            //get the products from database
-            return products.map(p=>{
-                //transform the data to attach each product quantity
-                return {...p,quantity:this.cart.items.find(i=>{
-                    i.productId.toString() === p._id.toString();
-                }).quantity}
-            })
-        })
    }
 
    getCart(){
@@ -67,9 +57,19 @@ class UserModel {
     const productIds = this.cart.items.map(i=>{
         return i.productId
     })
-
     return db.collection('products').find({_id:{$in:productIds}})
+    .toArray()
+    .then(products=>{
+        //get the products from database
+        return products.map(p=>{
+            //transform the data to attach each product quantity
+            return {...p, quantity:this.cart.items.find(item=>{
+               return item.productId.toString() == p._id.toString();
+            }).quantity}
+        })
+    })
    }
+
 }
 
 
