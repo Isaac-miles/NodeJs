@@ -13,7 +13,7 @@ class UserModel {
 
         if(db){
             db.collections('users').insertOne(this)
-            .then(result=>console.log(result))
+            .then(result=> result)
             .catch(err=>console.log(err))
         }else{
             console.log('user collections not found...')
@@ -22,15 +22,19 @@ class UserModel {
 
     addToCart(product){
          const db = getDB();
-        const existingProduct = this.cart.items.findIndex(ep=>{
-            return ep._id=== product._id;
+        const existingProduct = this.cart?.items?.findIndex(ep=>{
+            return ep.productId=== product._id;
         });
 
-        if(existingProduct){
+        let newQuantity = 1
+
+        if(existingProduct >=0){
+            // const updatedCartItem = existingProduct.
+            console.log(existingProduct)
 
         }else{
-            const updatedCart = {items:[{...product,quantity:1}] };
-         return db.collection('users').updateOne({_id:ObjectId.createFromHexString(id)},{$set:{cart:updatedCart}})
+            const updatedCart = {items:[{productId:product._id, quantity:1}] };
+         return db.collection('users').updateOne({_id:this._id},{$set:{cart:updatedCart}})
         }
     }
     static findById(id){
