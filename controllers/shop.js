@@ -48,19 +48,15 @@ exports.getProductDetails = (req,res,next)=>{
 
 exports.getCart = (req,res,next)=>{
     req.user.getCart()
-        .then(cart=>{
-            cart.getProducts()
-                .then(products=>{
-                    res.render('shop/cart',
-                            {
-                                pageTitle:'your cart',
-                                docTitle:'shop',
-                                path:'/cart',
-                                products:products
-                            });
+        .then(products=>{  
+               res.render('shop/cart',
+                {
+                    pageTitle:'your cart',
+                    docTitle:'shop',
+                    path:'/cart',
+                    products:products
+                });
                 })
-                .then(result=>console.log("result"))
-        })
         .catch(err=>console.log(err)) 
 }
 

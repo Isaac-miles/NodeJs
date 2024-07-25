@@ -52,10 +52,12 @@ class UserModel {
        return db.collection('users').updateOne({_id:this._id},{$set:{cart:updatedCart}})
         .toArray()
         .then(products=>{
+            //get the products from database
             return products.map(p=>{
+                //transform the data to attach each product quantity
                 return {...p,quantity:this.cart.items.find(i=>{
                     i.productId.toString() === p._id.toString();
-                })}
+                }).quantity}
             })
         })
    }
