@@ -1,10 +1,13 @@
 const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
+const connectMongoDB = require('./utils/db._mongodb').connectMongoDB;
+const UserModel = require('./models/user')
+
 const errorHandlerController = require('./controllers/errorHandlers')
 const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
-const connectMongoDB = require('./utils/db._mongodb').connectMongoDB;
+
 
 let PORT = 4000;
 const app = express();
@@ -16,12 +19,12 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static(path.join(__dirname,'public')));
 
 app.use((req,res,next)=>{
-    // UserModel.findByPk(1)
-    // .then(user=>{
-    //     req.user = user;
-    //     next();
-    // })
-    // .catch(err=>console.log(err));
+    UserModel.findByPk(1)
+    .then(user=>{
+        req.user = user;
+        next();
+    })
+    .catch(err=>console.log(err));
     next();
 })
 
