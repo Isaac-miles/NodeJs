@@ -30,7 +30,6 @@ class UserModel {
         }
     }
 
-
     addToCart(product){
         const db = getDB();
        const existingProductIndex = this.cart?.items.findIndex(cartProduct=>{
@@ -83,6 +82,15 @@ class UserModel {
 
     const updatedCart = {items:updatedCartItems};
     return db.collection('users').updateOne({_id:this._id},{$set:{cart:updatedCart}});
+   }
+
+   addOrder(){
+    const db = getDB();
+    db.collection('orders').insertOne(this.cart).then(result=>{
+        this.cart = {items:[]};
+        return db.collection('users')
+        .updateOne({_id:this._id},{$set:{cart:{items:[]}}})
+    })
    }
 }
 
