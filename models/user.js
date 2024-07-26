@@ -38,10 +38,9 @@ class UserModel {
        });
 
        let newQuantity = 1
-       let updatedCartItems = [...this.cart.items];
+       let updatedCartItems = this.cart ? [...this.cart.items]: []
 
        if(existingProductIndex >=0){
-           // updatedCartItems = [...this.cart.items]
            newQuantity = this.cart.items[existingProductIndex].quantity + 1
            updatedCartItems[existingProductIndex].quantity = newQuantity;
        }else{
@@ -49,32 +48,41 @@ class UserModel {
        }
 
        const updatedCart = {items:updatedCartItems};
-       return db.collection('users').updateOne({_id:this._id},{$set:{cart:updatedCart}})
+       return db.collection('users').updateOne({_id:this._id},{$set:{cart:updatedCart}});
    }
 
    getCart(){
     const db = getDB();
-    const productIds = this.cart.items.map(i=>{
+    const productIds = this.cart? this.cart.items.map(i=>{
         return i.productId
-    })
-    return db.collection('products').find({_id:{$in:productIds}})
-    .toArray()
-    .then(products=>{
-        //get the products from database
-        return products.map(p=>{
-            //transform the data to attach each product quantity
-            return {...p, quantity:this.cart.items.find(item=>{
-               return item.productId.toString() == p._id.toString();
-            }).quantity}
-        })
-    })
+    }):null
+
+    if(!productIds){
+        return new Promise((resolve, reject)=>resolve([]))
+    } else{
+        return db.collection('products').find({_id:{$in:productIds}})
+        .toArray()
+        .then(products=>{
+            //get the products from database
+            return products.map(p=>{
+                //transform the data to attach each product quantity
+                return {...p, quantity:this.cart.items.find(item=>{
+                   return item.productId.toString() == p._id.toString();
+                }).quantity}
+            })
+        }).catch(err=>console.log(err))
+    }
+
    }
 
    deleteItemFromCart(productId){
     const db=getDB();
-    const updatedCart = this.cart.items.filter(item=>{
-        return item.productId.toString() !== productId.toString()
+    const updatedCartItems = this.cart.items.filter(item=>{
+        return item.productId.toString() != productId.toString()
     });
+
+    const updatedCart = {items:updatedCartItems};
+    return db.collection('users').updateOne({_id:this._id},{$set:{cart:updatedCart}});
    }
 }
 
