@@ -86,7 +86,7 @@ class UserModel {
 
    addOrder(){
     const db = getDB();
-    db.collection('orders').insertOne(this.cart).then(result=>{
+    return db.collection('orders').insertOne(this.cart).then(result=>{
         this.cart = {items:[]};
         return db.collection('users')
         .updateOne({_id:this._id},{$set:{cart:{items:[]}}})
