@@ -85,7 +85,7 @@ exports.getOrders = (req, res, next) => {
       .getOrders()
       .then(orders => {
         console.log("nested",JSON.stringify(orders, null, 2));
-        res.render('shop/orders', {
+        res.render('shop/order', {
           path: '/orders',
           pageTitle: 'Your Orders',
           orders: orders
