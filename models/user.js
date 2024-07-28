@@ -86,15 +86,15 @@ class UserModel {
 
    addOrder(){
     const db = getDB();
-    this.getCart().then(products=>{    
+    return this.getCart().then(products=>{    
         const order = {
             items:products,
             user:{
-                _id:ObjectId.createFromHexString(this._id),
+                _id:this._id,
                 name:this.name
             }
         };
-        return db.collection('orders').insertOne(this.cart)
+        return db.collection('orders').insertOne(order)
     })
    .then(result=>{
         this.cart = {items:[]};
@@ -104,16 +104,7 @@ class UserModel {
    }
    getOrders(){
     const db = getDB();
-    this.getCart().then(products=>{    
-        const order = {
-            items:products,
-            user:{
-                _id:ObjectId.createFromHexString(this._id),
-                name:this.name
-            }
-        };
-    });
-    return db.collection('orders')
+    return db.collection('orders').find({})
    }
 }
 
